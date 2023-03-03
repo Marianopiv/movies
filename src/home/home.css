@@ -1,0 +1,24 @@
+.custom-text {
+  font-family: "Bebas Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 4px;
+}
+
+.custom-title {
+    font-family: 'Bebas Neue';
+font-style: normal;
+font-weight: 700;
+font-size: 76px;
+line-height: 78px;
+/* or 102% */
+
+text-align: center;
+letter-spacing: 12px;
+text-transform: uppercase;
+
+color: #64EEBC;
+
+}
