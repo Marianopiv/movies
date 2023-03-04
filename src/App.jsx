@@ -6,7 +6,7 @@ import Rutas from "./../routes/Rutas"
 function App() {
 
   return (
-    <div className="App bg-black h-screen">
+    <div className="App h-screen">
       <MoviesProvider>
       <Rutas/>
       </MoviesProvider>

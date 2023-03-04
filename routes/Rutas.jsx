@@ -11,8 +11,8 @@ const Rutas = () => {
       <Routes>
         <Route path="/" element={<WithNavbar />}>
           <Route index element={<Home />} />
+        <Route path="new-movie" element={<NewMovie />} />
         </Route>
-        <Route path="/new-movie" element={<NewMovie />} />
       </Routes>
     </BrowserRouter>
   );

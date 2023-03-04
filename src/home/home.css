@@ -7,6 +7,11 @@
   letter-spacing: 4px;
 }
 
+.custom-dot {
+  border: 1px dashed #FFFFFF;
+
+}
+
 .custom-title {
     font-family: 'Bebas Neue';
 font-style: normal;
