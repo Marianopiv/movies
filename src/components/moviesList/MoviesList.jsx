@@ -11,7 +11,7 @@ const MoviesList = () => {
 
   return (
     <>
-      <div className="bg-brown-50 mb-5">
+      <div className="bg-brown-50 mb-5 z-50 pt-10 ">
         <div className="flex justify-center items-center">
           <h3 className="custom-text">Ver</h3>
           <select

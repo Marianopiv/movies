@@ -36,11 +36,11 @@ const NewMovie = () => {
   };
 
   return (
-    <div className="w-screen flex flex-col items-center justify-center mt-14 bg-brown-50 gap-16">
+    <div className="w-screen flex flex-col items-center justify-center mt-14 bg-brown-50 gap-16 z-50">
       <p className="custom-text text-aqua-50">agregar pelicula</p>
       {!toogleLoader ? (
         <>
-          <div className="w-80  mb-5 custom-dot text-sm flex justify-center items-center">
+          <div className="w-80  mb-5 custom-dot text-sm flex justify-center items-center ">
             <label className="hover:cursor-pointer w-80 pl-5 ">
               <span className="custom-text px-8 pt-8 pb-4 text-white flex gap-6">
                 <img className="" src={clip} alt="" /> Agregá un archivo
@@ -57,7 +57,7 @@ const NewMovie = () => {
         </>
       ) : (
         <>
-          <div className="flex flex-col">
+          <div className="flex flex-col ">
             <p className="custom-text text-cream-50 text-left text-sm pb-4">
               {percentage < 100 ? `Cargando ${percentage}` : "100 % cargado!"}
             </p>
@@ -76,7 +76,7 @@ const NewMovie = () => {
           </div>
         </>
       )}
-      <div className="border-b-white border-b mb-4 w-60">
+      <div className="border-b-white border-b mb-4 w-60 ">
         <input
         onChange={handleInput}
           className="custom-text text-center bg-transparent  text-white w-60  file:rounded-full file:border-0"

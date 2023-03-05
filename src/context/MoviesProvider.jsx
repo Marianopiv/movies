@@ -8,9 +8,12 @@ const MoviesProvider = ({ children }) => {
   const [toogleLoader, setToogleLoader] = useState(false);
   const [percentage, setPercentage] = useState(0);
   const [added, setAdded] = useState([]);
+  const [featured, setFeatured] = useState(null);
+  const [loading, setLoading] = useState(false)
   const endpoint =
     "https://api.themoviedb.org/3/movie/popular?api_key=6f26fd536dd6192ec8a57e94141f8b20";
 
+  const featuredEndpoint = "https://api.themoviedb.org/3/movie/now_playing?api_key=6f26fd536dd6192ec8a57e94141f8b20"  
   const fetchData = async () => {
     try {
       const response = await axios.get(endpoint);
@@ -20,6 +23,17 @@ const MoviesProvider = ({ children }) => {
       console.log("no anduvo");
     }
   };
+
+  const fetchFeatured = async () => {
+    setLoading(true)
+    try {
+      const response = await axios.get(featuredEndpoint)
+      setFeatured((response.data.results.find((item,index)=>Math.floor(Math.random()*response.data.results.length)===index)));
+      featured!==undefined?setLoading(false):fetchFeatured()
+    } catch (error) {
+      console.log("no anduvo");
+    }
+  }
 
   const load = (percentage) => {
     if (percentage < 100) {
@@ -32,11 +46,8 @@ const MoviesProvider = ({ children }) => {
 
   const addNewMovie = (movie) => {
     const myObjString = JSON.stringify(movie);
-    const prefix = "myObj_";
     const id = Math.random().toString(36).substring(2, 15);
-    const key = prefix + id;
-    localStorage.setItem(key, myObjString);
-    console.log(movie);
+    localStorage.setItem(id, myObjString);
   };
 
   const getMovies = () => {
@@ -44,16 +55,14 @@ const MoviesProvider = ({ children }) => {
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       const item = JSON.parse(localStorage.getItem(key));
-      console.log(item);
-
       favMovies.push(item);
     }
-    console.log(favMovies);
     setAdded(favMovies);
   };
   useEffect(() => {
     fetchData();
     getMovies();
+    fetchFeatured()
   }, []);
 
   return (
@@ -69,7 +78,9 @@ const MoviesProvider = ({ children }) => {
         setPercentage,
         load,
         addNewMovie,
-        added
+        added,
+        featured,
+        loading
       }}
     >
       {children}
