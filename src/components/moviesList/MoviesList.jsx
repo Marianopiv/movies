@@ -13,15 +13,15 @@ const MoviesList = () => {
     <>
       <div className="bg-brown-50 mb-5 z-50 pt-10 ">
         <div className="flex justify-center items-center">
-          <h3 className="custom-text">Ver</h3>
+          <h3 className="custom-text opacity-60">Ver:</h3>
           <select
             className="text-white custom-text bg-brown-50"
             id="dropdown"
             name="dropdown"
             onChange={(e)=>setToogle(e.target.value)}
           >
-            <option value="option1">Populares:</option>
-            <option value="option2">Favoritas:</option>
+            <option value="option1">Populares</option>
+            <option value="option2">Mis Peliculas</option>
           </select>
         </div>
         {toogle==="option1"?list && (
