@@ -13,7 +13,7 @@ const Home = () => {
       className="flex w-screen flex-col items-center gap-28 mt-20 
    "
     >
-      <div className="absolute h-64 w-screen bg-gradient-to-b from-transparent bottom-56 z-50 to-brown-50"></div>
+      <div className="absolute h-96 top-40 w-screen bg-gradient-to-b from-transparent bottom-56 z-50 to-brown-50"></div>
       <div className="flex flex-col justify-end items-center gap-4 z-20">
         <h3 className="custom-text text-cream-50">original de liteflix</h3>
         <h1 className="custom-title text-5xl">{featured && featured.title}</h1>

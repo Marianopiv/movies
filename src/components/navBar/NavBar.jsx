@@ -13,7 +13,7 @@ const NavBar = () => {
       {!toogleMovie && (
         <div className="absolute w-screen h-screen top-0 ">
           {<img
-            className="w-screen z-50 h-2/3  top-10 object-cover right-1 opacity-60  "
+            className="w-screen z-50 h-3/4  object-cover right-1 opacity-60  "
             src={featured && getImg(featured.poster_path)}
             alt=""
             srcset=""
