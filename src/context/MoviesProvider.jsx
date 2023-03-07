@@ -6,7 +6,6 @@ const MoviesProvider = ({ children }) => {
   const [list, setList] = useState(null);
   const [toogleMovie, setToogleMovie] = useState(false);
   const [toogleLoader, setToogleLoader] = useState(false);
-  const [percentage, setPercentage] = useState(0);
   const [added, setAdded] = useState(
     JSON.parse(localStorage.getItem("favoritos")) || []
   );
@@ -32,21 +31,12 @@ const MoviesProvider = ({ children }) => {
       const response = await axios.get(featuredEndpoint);
       const destacado = response.data.results[Math.ceil(Math.random() * 10)];
       setFeatured(destacado);
-      console.log(destacado);
       setLoading(false);
     } catch (error) {
       console.log("no anduvo");
     }
   };
 
-  const load = (percentage) => {
-    if (percentage < 100) {
-      setPercentage(percentage + 20);
-      setTimeout(() => {
-        load(percentage + 20);
-      }, 1000);
-    }
-  };
 
   const addNewMovie = (movie) => {
     movie.id = Math.random().toString(36).substring(2, 15);
@@ -66,9 +56,6 @@ const MoviesProvider = ({ children }) => {
         toogleMovie,
         setToogleLoader,
         toogleLoader,
-        percentage,
-        setPercentage,
-        load,
         addNewMovie,
         added,
         featured,

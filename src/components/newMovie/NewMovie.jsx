@@ -12,13 +12,11 @@ const NewMovie = () => {
     toogleMovie,
     toogleLoader,
     setToogleLoader,
-    setPercentage,
-    load,
     addNewMovie,
-    added
+    added,
   } = useContext(MoviesContext);
 
-  const { handleInputFileChange, newMovie, addedTrue, setAddedTrue, handleInputChange,percentage } = useAdd();
+  const { handleInputFileChange, newMovie, addedTrue, setAddedTrue, handleInputChange,percentage, setPercentage } = useAdd();
 
   const handleClick = () => {
     setToogleMovie(!toogleMovie);
@@ -47,7 +45,7 @@ const NewMovie = () => {
     return (
       <div className="w-screen custom-text text-white flex flex-col items-center justify-center h-3/4 gap-10">
         <h3 className="text-2xl">¡Felicidades!</h3>
-        <p className="w-2/3 opacity-70">Liteflix The Movie fue correctamente subida.</p>
+        <p className="w-2/3 opacity-70">{newMovie.name} fue correctamente subida.</p>
         <Button action={handleClick} text={"ir a home"}  customClass={"bg-white text-black mt-10"}/>
       </div>
     );
@@ -76,7 +74,7 @@ const NewMovie = () => {
           <>
             <div className="flex flex-col ">
               <p className="custom-text text-cream-50 text-left text-sm pb-4">
-                {percentage > 0 ? `Cargando ${percentage}` : `${percentage} % cargado!`}
+                {percentage < 100 ? `Cargando ${percentage}` : `${percentage} % cargado!`}
               </p>
               <div class="w-72 h-1 flex items-center bg-cream-50 opacity-80 rounded-full">
                 {percentage && percentage < 100 ? (
@@ -109,9 +107,9 @@ const NewMovie = () => {
         <div className="flex flex-col gap-6 ">
           <Button
             customClass={`border pr-2 bg-white ${
-              percentage === 100 ? "" : "opacity-60"
+              percentage === 100&&newMovie.name ? "" : "opacity-60"
             }`}
-            action={percentage === 100 ? handleAdd : undefined}
+            action={percentage === 100&&newMovie.name ? handleAdd : undefined}
             text={"Subir Película"}
           />
           <Button

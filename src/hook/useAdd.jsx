@@ -65,6 +65,7 @@ const useAdd = () => {
     addedTrue,
     setAddedTrue,
     handleInputChange,
+    setPercentage,
     percentage
   };
 };

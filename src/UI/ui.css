@@ -1,0 +1,11 @@
+.btnStyle {
+  width: 102px;
+  height: 18px;
+
+  font-family: "Bebas Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 4px;
+}

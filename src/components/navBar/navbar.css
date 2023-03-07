@@ -1,0 +1,13 @@
+.navTitle {
+font-family: 'Bebas Neue';
+font-style: normal;
+font-weight: 700;
+font-size: 28px;
+line-height: 28px;
+/* identical to box height */
+
+text-align: center;
+letter-spacing: 4px;
+
+color: #64EEBC;
+}

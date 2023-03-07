@@ -9,11 +9,12 @@ const NavBar = () => {
   const { setToogleMovie, toogleMovie, featured } = useContext(MoviesContext);
 
   return (
-    <div className="flex justify-center items-center w-auto gap-16 mt-5  ">
+    <div className="flex justify-center items-center w-auto gap-16 mt-4">
       {!toogleMovie && (
-        <div className="absolute w-screen h-screen top-0 ">
+        <div className="absolute w-screen h-screen top-0">
+          <div className="absolute h-screen w-screen bg-gradient-to-b from-transparent z-20 to-brown-50"></div>
           {<img
-            className="w-screen z-50 h-3/4  object-cover right-1 opacity-60  "
+            className="w-screen z-50 h-screen object-cover right-1"
             src={featured && getImg(featured.poster_path)}
             alt=""
             srcset=""
@@ -26,10 +27,10 @@ const NavBar = () => {
         }`}
       >
         <Link className="z-50 hover:cursor-pointer" onClick={() => setToogleMovie(!toogleMovie)} to={"/new-movie"}>
-          <p className=" text-3xl font-sans text-white z-50">+</p>
+          <p className=" text-4xl font-sans text-white z-50 mb-0.5">+</p>
         </Link>
       </div>
-      <p className="text-aqua-50 text-2xl z-20 tracking-widest font-[10]">
+      <p className="z-20 navTitle">
         liteflix
       </p>
       <img className="rounded-full z-20" src={iconNav} alt="" />
