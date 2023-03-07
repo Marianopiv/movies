@@ -34,8 +34,8 @@ const MoviesList = () => {
         :
         added && added.length > 0 && (
           <div className="flex justify-center flex-wrap gap-6">
-            {added.map(({ title, backdrop_path }, index) => (
-              <Movie key={index} title={title} poster={backdrop_path} />
+            {added.map(({ file, name }, index) => (
+              <Movie key={index} title={name} poster={file} />
             ))}
           </div>
         )}

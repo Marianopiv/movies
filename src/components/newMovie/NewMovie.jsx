@@ -12,29 +12,29 @@ const NewMovie = () => {
     toogleMovie,
     toogleLoader,
     setToogleLoader,
-    percentage,
     setPercentage,
     load,
     addNewMovie,
+    added
   } = useContext(MoviesContext);
 
-  const { handleInput, newMovie, addedTrue, setAddedTrue } = useAdd();
+  const { handleInputFileChange, newMovie, addedTrue, setAddedTrue, handleInputChange,percentage } = useAdd();
 
   const handleClick = () => {
     setToogleMovie(!toogleMovie);
     setToogleLoader(false);
     setPercentage(0);
+    localStorage.setItem("favoritos",JSON.stringify(added))
     navigate(-1);
   };
 
   const handleToogle = () => {
     setToogleLoader(true);
-    load(percentage);
     console.log(newMovie);
   };
 
   const loadImage = (e) => {
-    handleInput(e);
+    handleInputFileChange(e);
     handleToogle();
   };
 
@@ -76,7 +76,7 @@ const NewMovie = () => {
           <>
             <div className="flex flex-col ">
               <p className="custom-text text-cream-50 text-left text-sm pb-4">
-                {percentage < 100 ? `Cargando ${percentage}` : "100 % cargado!"}
+                {percentage > 0 ? `Cargando ${percentage}` : `${percentage} % cargado!`}
               </p>
               <div class="w-72 h-1 flex items-center bg-cream-50 opacity-80 rounded-full">
                 {percentage && percentage < 100 ? (
@@ -99,7 +99,7 @@ const NewMovie = () => {
         )}
         <div className="border-b-white border-b mb-4 w-60 ">
           <input
-            onChange={handleInput}
+            onChange={handleInputChange}
             className="custom-text text-center bg-transparent  text-white w-60  file:rounded-full file:border-0"
             name="title"
             placeholder="título"

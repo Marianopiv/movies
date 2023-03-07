@@ -7,17 +7,19 @@ const MoviesProvider = ({ children }) => {
   const [toogleMovie, setToogleMovie] = useState(false);
   const [toogleLoader, setToogleLoader] = useState(false);
   const [percentage, setPercentage] = useState(0);
-  const [added, setAdded] = useState([]);
+  const [added, setAdded] = useState(
+    JSON.parse(localStorage.getItem("favoritos")) || []
+  );
   const [featured, setFeatured] = useState(null);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const endpoint =
     "https://api.themoviedb.org/3/movie/popular?api_key=6f26fd536dd6192ec8a57e94141f8b20";
 
-  const featuredEndpoint = "https://api.themoviedb.org/3/movie/now_playing?api_key=6f26fd536dd6192ec8a57e94141f8b20"  
+  const featuredEndpoint =
+    "https://api.themoviedb.org/3/movie/now_playing?api_key=6f26fd536dd6192ec8a57e94141f8b20";
   const fetchData = async () => {
     try {
       const response = await axios.get(endpoint);
-      console.log(response.data.results);
       setList(response.data.results);
     } catch (error) {
       console.log("no anduvo");
@@ -25,15 +27,17 @@ const MoviesProvider = ({ children }) => {
   };
 
   const fetchFeatured = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const response = await axios.get(featuredEndpoint)
-      setFeatured((response.data.results.find((item,index)=>Math.floor(Math.random()*response.data.results.length)===index)));
-      featured!==undefined?setLoading(false):fetchFeatured()
+      const response = await axios.get(featuredEndpoint);
+      const destacado = response.data.results[Math.ceil(Math.random() * 10)];
+      setFeatured(destacado);
+      console.log(destacado);
+      setLoading(false);
     } catch (error) {
       console.log("no anduvo");
     }
-  }
+  };
 
   const load = (percentage) => {
     if (percentage < 100) {
@@ -45,24 +49,12 @@ const MoviesProvider = ({ children }) => {
   };
 
   const addNewMovie = (movie) => {
-    const myObjString = JSON.stringify(movie);
-    const id = Math.random().toString(36).substring(2, 15);
-    localStorage.setItem(id, myObjString);
-  };
-
-  const getMovies = () => {
-    let favMovies = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      const item = JSON.parse(localStorage.getItem(key));
-      favMovies.push(item);
-    }
-    setAdded(favMovies);
+    movie.id = Math.random().toString(36).substring(2, 15);
+    setAdded([...added, movie]);
   };
   useEffect(() => {
     fetchData();
-    getMovies();
-    fetchFeatured()
+    fetchFeatured();
   }, []);
 
   return (
@@ -80,7 +72,7 @@ const MoviesProvider = ({ children }) => {
         addNewMovie,
         added,
         featured,
-        loading
+        loading,
       }}
     >
       {children}
