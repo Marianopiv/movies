@@ -11,11 +11,11 @@ const MoviesList = () => {
 
   return (
     <>
-      <div className="bg-brown-50 mb-5 z-50 pt-10 ">
-        <div className="flex justify-center items-center">
-          <h3 className="custom-text opacity-60">Ver:</h3>
+      <div className="bg-brown-50 md:bg-transparent z-50 py-16 md:w-1/2 md:flex-col md:justify-end">
+        <div className="flex justify-center items-center pb-7 md:justify-end">
+          <h3 className="custom-text opacity-60 text-cream-50">Ver:</h3>
           <select
-            className="text-white custom-text bg-brown-50"
+            className="text-white custom-text bg-brown-50 md:bg-transparent"
             id="dropdown"
             name="dropdown"
             onChange={(e)=>setToogle(e.target.value)}
@@ -25,7 +25,7 @@ const MoviesList = () => {
           </select>
         </div>
         {toogle==="option1"?list && (
-          <div className="flex justify-center flex-wrap gap-6">
+          <div className="flex justify-center flex-wrap gap-6 md:flex-col md:items-end">
             {list.slice(0, 4).map(({ id, title, backdrop_path }) => (
               <Movie key={id} title={title} poster={getImg(backdrop_path)} />
             ))}

@@ -9,12 +9,13 @@ const NavBar = () => {
   const { setToogleMovie, toogleMovie, featured } = useContext(MoviesContext);
 
   return (
-    <div className="flex justify-center items-center w-auto gap-16 mt-4">
+    <div className="flex relative justify-center items-center w-auto gap-16 pt-5">
       {!toogleMovie && (
-        <div className="absolute w-screen h-screen top-0">
-          <div className="absolute h-screen w-screen bg-gradient-to-b from-transparent z-20 to-brown-50"></div>
+        <div className="md:hidden absolute w-screen h-screen top-0">
+            {<div className="md:hidden absolute h-screen sm:h-96 w-screen bg-gradient-to-b from-transparent z-30 to-brown-50 bottom-22 "></div>}
+            {<div className="md:hidden absolute h-96 w-screen bg-gradient-to-b from-transparent z-30 to-brown-50 bottom-4 "></div>}
           {<img
-            className="w-screen z-50 h-screen object-cover right-1"
+            className="w-screen absolute z-20 h-fit sm:h-fit object-cover sm:object-fill right-1 bg-gradient-to-b from-transparent to-brown-50"
             src={featured && getImg(featured.poster_path)}
             alt=""
             srcset=""
