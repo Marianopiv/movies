@@ -14,7 +14,7 @@ const Home = () => {
     <div
       className={`flex w-screen flex-col md:flex-row items-center md:relative md:items-center`}
     >
-      <img className="hidden md:flex md:absolute w-screen h-screen object-cover overflow-y-visible md:top-0" src={featured&&getImg(featured.poster_path)} alt="" />
+      <img className="hidden md:flex md:absolute w-screen h-screen object-cover overflow-y-visible md:top-0  xl:top-96 xl:h-96" src={featured&&getImg(featured.poster_path)} alt="" />
       <div className="flex flex-col items-center gap-4 z-40 mt-56  md:w-2/3 md:mt-0 md:items-baseline md:pl-12 lg:pt-52 lg:pl-14 lg:w-2/3">
         <h3 className="custom-text text-white pt-2 pb-1">original de liteflix</h3>
         <h1 className="custom-title md:text-left">{featured && featured.title}</h1>

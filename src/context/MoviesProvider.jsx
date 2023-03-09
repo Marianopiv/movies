@@ -29,7 +29,7 @@ const MoviesProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await axios.get(featuredEndpoint);
-      const destacado = response.data.results[Math.ceil(Math.random() * 10)];
+      const destacado = response.data.results[Math.ceil(Math.random() * 15)];
       setFeatured(destacado);
       setLoading(false);
     } catch (error) {

@@ -1,6 +1,9 @@
-import React, { useState } from "react";
-
+import React, { useContext, useEffect, useState } from "react";
+import { MoviesContext } from "../context/MoviesProvider";
 const useAdd = () => {
+  const {
+    setToogleLoader,
+  } = useContext(MoviesContext);
   const [newMovie, setNewMovie] = useState({ file: "", name: "" });
   const [toogle, setToogle] = useState("option1");
   const [addedTrue, setAddedTrue] = useState(false);
@@ -29,9 +32,7 @@ const useAdd = () => {
     });
   };
 
-  const handleInputFileChange = (e) => {
-    let file;
-    file = e.target.files[0];
+  const handleInputFileChange = (file) => {
     const reader = new FileReader();
 
     reader.onload = (event) => {
@@ -57,6 +58,26 @@ const useAdd = () => {
   const handleInputChange = (e) =>
     setNewMovie({ ...newMovie, name: e.target.value });
 
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    handleInputFileChange(file);
+    setToogleLoader(true)
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    document.addEventListener("dragover", handleDragOver);
+    document.addEventListener("drop", handleDrop);
+
+    return () => {
+      document.removeEventListener("dragover", handleDragOver);
+      document.removeEventListener("drop", handleDrop);
+    };
+  }, []);
   return {
     handleInputFileChange,
     newMovie,
@@ -66,7 +87,8 @@ const useAdd = () => {
     setAddedTrue,
     handleInputChange,
     setPercentage,
-    percentage
+    percentage,
+    handleDrop,
   };
 };
 
