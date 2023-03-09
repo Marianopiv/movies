@@ -17,10 +17,10 @@ const NavBar = () => {
       {!toogleMovie && (
         <div className="md:hidden absolute w-screen h-screen top-0">
           {
-            <div className="md:hidden absolute h-screen sm:h-96 w-screen bg-gradient-to-b from-transparent z-30 to-brown-50 bottom-22 sm:-bottom-10 "></div>
+            <div className="md:hidden absolute h-screen sm:h-96 w-screen bg-gradient-to-b from-transparent z-30 to-brown-50 bottom-18 sm:-bottom-8 "></div>
           }
           {
-            <div className="md:hidden absolute h-96 w-screen bg-gradient-to-b from-transparent z-30 to-brown-50 bottom-4 sm:-bottom-10 "></div>
+            <div className="md:hidden absolute h-96 w-screen bg-gradient-to-b from-transparent z-30 to-brown-50 bottom-8 sm:-bottom-10 "></div>
           }
           {
             <img

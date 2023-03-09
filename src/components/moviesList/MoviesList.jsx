@@ -20,25 +20,25 @@ const MoviesList = () => {
             name="dropdown"
             onChange={(e)=>setToogle(e.target.value)}
           >
-            <option className="bg-brown-50 custom-text" value="option1">Populares</option>
-            <option className="bg-brown-50 custom-text" value="option2">Mis Peliculas</option>
+            <option className="bg-brown-50 custom-text " value="option1">Populares</option>
+            <option className="bg-brown-50 custom-text " value="option2">Mis Peliculas</option>
           </select>
         </div>
         {toogle==="option1"?list && (
           <div className="flex justify-center flex-wrap gap-6 md:flex-col md:items-center lg:pl-10 ">
-            {list.slice(0, 4).map(({ id, title, backdrop_path }) => (
-              <Movie key={id} title={title} poster={getImg(backdrop_path)} />
+            {list.slice(0, 4).map(({ id, title, backdrop_path,vote_average,release_date }) => (
+              <Movie key={id} title={title} poster={getImg(backdrop_path)} vote={vote_average} date={release_date} />
             ))}
           </div>
         )
         :
-        added && added.length > 0 && (
-          <div className="flex justify-center flex-wrap flex-col gap-6 lg:pl-10 md:h-screen md:justify-start ">
+        added && added.length > 0 ? (
+          <div className="flex justify-center flex-wrap flex-col gap-6 lg:pl-10 md:h-screen md:justify-start">
             {added.slice(0, 4).map(({ file, name }, index) => (
               <Movie key={index} title={name} poster={file} />
             ))}
           </div>
-        )}
+        ):<div className="w-screen h-screen"></div>}
       </div>
     </>
   );

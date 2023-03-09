@@ -87,20 +87,20 @@ const NewMovie = () => {
           </>
         ) : (
           <>
-            <div className="flex flex-col ">
+            <div className="flex flex-col md:w-96">
               <p className="custom-text text-cream-50 text-left text-sm pb-4">
                 {percentage < 100
                   ? `Cargando ${percentage}`
                   : `${percentage} % cargado!`}
               </p>
-              <div class="w-72 h-1 flex items-center bg-cream-50 opacity-80 rounded-full">
+              <div class="w-72 h-1 flex items-center bg-cream-50 opacity-80 rounded-full md:w-96">
                 {percentage && percentage < 100 ? (
                   <div
-                    class={`w-${percentage} h-2  text-center text-xs text-white bg-aqua-50`}
+                    class={`w-${percentage} h-2  text-center text-xs text-white bg-aqua-50 md:w-96 `}
                   ></div>
                 ) : (
                   <div
-                    class={`w-72 h-2  text-center text-xs text-white bg-aqua-50`}
+                    class={`w-72 h-2  text-center text-xs text-white bg-aqua-50 md:w-96`}
                   ></div>
                 )}
               </div>

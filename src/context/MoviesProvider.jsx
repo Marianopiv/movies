@@ -20,6 +20,7 @@ const MoviesProvider = ({ children }) => {
     try {
       const response = await axios.get(endpoint);
       setList(response.data.results);
+      console.log(response.data.results);
     } catch (error) {
       console.log("no anduvo");
     }
@@ -29,7 +30,7 @@ const MoviesProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await axios.get(featuredEndpoint);
-      const destacado = response.data.results[Math.ceil(Math.random() * 15)];
+      const destacado = response.data.results[Math.ceil(Math.random() * 10)];
       setFeatured(destacado);
       setLoading(false);
     } catch (error) {
