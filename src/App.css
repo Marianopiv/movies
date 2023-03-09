@@ -1,7 +1,7 @@
-@media (max-width:520px){#root {
+#root {
   text-align: center;
   background-color: #242424;
-}}
+}
 
 .logo {
   height: 6em;
