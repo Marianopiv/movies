@@ -45,7 +45,11 @@ text-align: center;
 letter-spacing: 4px;
 }
 
-
+@media screen and (min-width: 430px) and (max-width: 630px) {
+  .custom-background{
+    display: block;
+  }
+}
 .lds-spinner {
   color: #64EEBC;
   display: inline-block;

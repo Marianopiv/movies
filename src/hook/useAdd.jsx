@@ -24,8 +24,8 @@ const useAdd = () => {
   const handleInputFileChange = (event) => {
     const reader = new FileReader();
     let file = event;
-    if (file.type !== "image/jpeg" && file.type !== "image/png") {
-      setError(true);
+    if (file.type!=="image/jpeg"&&file.type!=="image/png") {
+      setError(true)
     }
 
     reader.onload = (event) => {

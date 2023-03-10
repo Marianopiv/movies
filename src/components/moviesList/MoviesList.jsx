@@ -17,6 +17,7 @@ const MoviesList = () => {
           toogle === "option1" ? "md:py-0 md:pt-10" : "md:py-16"
         }  md:w-1/2 md:flex-col md:pl-6 lg:pl-10 lg:pt-4`}
       >
+        <div className="custom-background bg-brown-50 absolute h-60 left-0 sm:hidden  w-screen bg-gradient-to-b from-transparent -z-10 to-brown-50 -bottom-60 "></div>
         <div className="flex justify-center items-center pb-7 md:justify-center md:pl-16">
           <h3 className="custom-text opacity-60 text-cream-50 ">Ver:</h3>
           <select
@@ -29,6 +30,7 @@ const MoviesList = () => {
               Populares
             </option>
             <option className="bg-brown-50 text-white" value="option2">
+              
               Mis Peliculas
             </option>
           </select>
@@ -65,6 +67,7 @@ const MoviesList = () => {
           </div>
         ) : (
           <div className="sm:flex justify-center flex-wrap gap-6 md:flex-col md:items-center lg:pl-10 sm:invisible hidden">
+            
             {list
               .slice(0, 4)
               .map(
