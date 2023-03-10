@@ -12,16 +12,9 @@ const useAdd = () => {
     return new Promise((resolve) => {
       let fileInfo;
       let baseURL = "";
-      // Make new FileReader
       let reader = new FileReader();
-
-      // Convert the file to base64 text
       reader.readAsDataURL(file);
-
-      // on reader load somthing...
-
       reader.onload = () => {
-        // Make a fileInfo Object
         baseURL = reader.result;
         resolve(baseURL);
       };
@@ -31,8 +24,8 @@ const useAdd = () => {
   const handleInputFileChange = (event) => {
     const reader = new FileReader();
     let file = event;
-    if (file.type!=="image/jpeg"&&file.type!=="image/png") {
-      setError(true)
+    if (file.type !== "image/jpeg" && file.type !== "image/png") {
+      setError(true);
     }
 
     reader.onload = (event) => {

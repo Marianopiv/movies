@@ -27,7 +27,9 @@ const MoviesProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await axios.get(featuredEndpoint);
-      const destacado = response.data.results.find((item)=>item.title==="Knock at the Cabin");
+      const destacado = response.data.results.find(
+        (item) => item.title === "Knock at the Cabin"
+      );
       setFeatured(destacado);
       setLoading(false);
     } catch (error) {
