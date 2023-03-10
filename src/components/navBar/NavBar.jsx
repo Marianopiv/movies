@@ -13,7 +13,7 @@ const NavBar = () => {
 
 
   return (
-    <div className={`flex relative justify-center items-center w-auto md:w-screen gap-16 md:gap-0 md:justify-around pt-5 ${toogleMovie? "md:hidden": ""}`}>
+    <div className={`flex relative justify-center items-center w-auto md:w-screen gap-16 md:gap-0 md:justify-around  pt-5 ${toogleMovie? "md:hidden": ""}`}>
       {!toogleMovie && (
         <div className="md:hidden absolute w-screen h-screen top-0">
           {
