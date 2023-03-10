@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MoviesContext } from "../context/MoviesProvider";
 const useAdd = () => {
-  const {
-    setToogleLoader,
-  } = useContext(MoviesContext);
+  const { setToogleLoader } = useContext(MoviesContext);
   const [newMovie, setNewMovie] = useState({ file: "", name: "" });
   const [toogle, setToogle] = useState("option1");
   const [addedTrue, setAddedTrue] = useState(false);
   const [percentage, setPercentage] = useState(0);
+  const [error, setError] = useState(false);
 
   const getBase64 = (file) => {
     return new Promise((resolve) => {
@@ -23,34 +22,29 @@ const useAdd = () => {
 
       reader.onload = () => {
         // Make a fileInfo Object
-        console.log("Called", reader);
         baseURL = reader.result;
-        console.log(baseURL);
         resolve(baseURL);
       };
-      console.log(fileInfo);
     });
   };
 
-  //    const inputElement = document.querySelector('input[type="file"]');file = inputElement.files[0];const blob = new Blob([file], { type: file.type });
- 
-
-  const handleInputFileChange = (file) => {
+  const handleInputFileChange = (event) => {
     const reader = new FileReader();
+    let file = event;
+    if (file.type!=="image/jpeg") {
+      setError(true)
+      return;
+    }
 
     reader.onload = (event) => {
-      const image = new Image();
-      image.onload = () => {
-        const percent = Math.round((image.naturalWidth * image.naturalHeight) / (event.total / 100));
-        setPercentage(Math.min(percent,100));
-      };
-      image.src = event.target.result;
+      const { loaded, total } = event;
+      const percent = Math.round((loaded / total) * 100);
+      setPercentage(percent);
     };
     reader.readAsDataURL(file);
     getBase64(file)
       .then((result) => {
         file["base64"] = result;
-        console.log("File Is", file);
         setNewMovie({ ...newMovie, file: result });
       })
       .catch((err) => {
@@ -65,7 +59,7 @@ const useAdd = () => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
     handleInputFileChange(file);
-    setToogleLoader(true)
+    setToogleLoader(true);
   };
 
   const handleDragOver = (e) => {
@@ -91,7 +85,8 @@ const useAdd = () => {
     handleInputChange,
     setPercentage,
     percentage,
-    handleDrop,
+    error,
+    setError
   };
 };
 

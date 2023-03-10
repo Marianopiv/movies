@@ -24,6 +24,8 @@ const NewMovie = () => {
     handleInputChange,
     percentage,
     setPercentage,
+    error,
+    setError
   } = useAdd();
 
   const handleClick = () => {
@@ -36,11 +38,10 @@ const NewMovie = () => {
 
   const handleToogle = () => {
     setToogleLoader(true);
-    console.log(newMovie);
   };
 
   const loadImage = (e) => {
-    handleInputFileChange(e);
+    handleInputFileChange(e.target.files[0]);
     handleToogle();
   };
 
@@ -48,6 +49,11 @@ const NewMovie = () => {
     addNewMovie(newMovie);
     setAddedTrue(!addedTrue);
   };
+
+  const handleReintentar = () => {
+    setError(false)
+    setToogleLoader(false)
+  }
 
   if (addedTrue) {
     return (
@@ -72,7 +78,11 @@ const NewMovie = () => {
             <div className="w-80 md:w-2/3  mb-5 custom-dot text-sm flex justify-center items-center ">
               <label className="hover:cursor-pointer w-80 md:w-screen  pl-5 md:pl-0 ">
                 <span className="custom-text px-8  pt-8 pb-4 text-white flex gap-6 md:justify-center">
-                  <img className="md:h-6" src={clip} alt="" /> <p className="flex md:hidden">Agregá un archivo</p><p className="hidden md:flex">Agregá un archivo o arrastralo y soltalo aquí</p>
+                  <img className="md:h-6" src={clip} alt="" />{" "}
+                  <p className="flex md:hidden">Agregá un archivo</p>
+                  <p className="hidden md:flex">
+                    Agregá un archivo o arrastralo y soltalo aquí
+                  </p>
                 </span>
                 <input
                   onChange={(e) => loadImage(e)}
@@ -80,7 +90,6 @@ const NewMovie = () => {
                   type="file"
                   name="backdrop_path"
                   id=""
-
                 />
               </label>
             </div>
@@ -89,24 +98,24 @@ const NewMovie = () => {
           <>
             <div className="flex flex-col md:w-96">
               <p className="custom-text text-cream-50 text-left text-sm pb-4">
-                {percentage < 100
+                {error?"¡ERROR! no se pudo cargar la película":percentage < 100
                   ? `Cargando ${percentage}`
                   : `${percentage} % cargado!`}
               </p>
               <div class="w-72 h-1 flex items-center bg-cream-50 opacity-80 rounded-full md:w-96">
                 {percentage && percentage < 100 ? (
                   <div
-                    class={`w-${percentage} h-2  text-center text-xs text-white bg-aqua-50 md:w-96 `}
+                    class={`w-${percentage} h-2  text-center text-xs text-white ${!error?"bg-aqua-50":"bg-red-500"} md:w-96 `}
                   ></div>
                 ) : (
                   <div
-                    class={`w-72 h-2  text-center text-xs text-white bg-aqua-50 md:w-96`}
+                    class={`w-72 h-2  text-center text-xs text-white ${!error?"bg-aqua-50":"bg-red-500"} md:w-96`}
                   ></div>
                 )}
               </div>
               {percentage === 100 && (
-                <p className="text-aqua-50 text-right custom-text mt-2">
-                  ¡Listo!
+                <p onClick={error&&handleReintentar}  className={`${error?"text-white hover:cursor-pointer":""} text-aqua-50 text-right custom-text mt-2`}>
+                  {!error?"¡Listo!":"Reintentar"}
                 </p>
               )}
             </div>

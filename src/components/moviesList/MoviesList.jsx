@@ -34,7 +34,7 @@ const MoviesList = () => {
         )
         :
         added && added.length > 0 ? (
-          <div className="flex justify-center flex-wrap w-screen md:w-auto flex-col gap-6 lg:pl-10 md:h-screen md:justify-start">
+          <div className="flex justify-center flex-wrap w-screen md:w-auto flex-col gap-6 lg:pl-10 md:justify-start">
             {added.slice(0, 4).map(({ file, name }, index) => (
               <Movie key={index} title={name} poster={file} />
             ))}

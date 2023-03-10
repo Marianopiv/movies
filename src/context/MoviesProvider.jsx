@@ -20,24 +20,20 @@ const MoviesProvider = ({ children }) => {
     try {
       const response = await axios.get(endpoint);
       setList(response.data.results);
-      console.log(response.data.results);
-    } catch (error) {
-      console.log("no anduvo");
-    }
+    } catch (error) {}
   };
 
   const fetchFeatured = async () => {
     setLoading(true);
     try {
       const response = await axios.get(featuredEndpoint);
-      const destacado = response.data.results[Math.ceil(Math.random() * 10)];
+      const destacado = response.data.results[Math.ceil(Math.random() * 15)];
       setFeatured(destacado);
       setLoading(false);
     } catch (error) {
       console.log("no anduvo");
     }
   };
-
 
   const addNewMovie = (movie) => {
     movie.id = Math.random().toString(36).substring(2, 15);

@@ -27,7 +27,6 @@ const NavBar = () => {
               className="w-screen absolute z-20 h-fit sm:h-fit object-cover sm:object-fill right-1 bg-gradient-to-b from-transparent to-brown-50"
               src={featured && getImg(featured.poster_path)}
               alt=""
-              srcset=""
             />
           }
         </div>
@@ -75,7 +74,7 @@ const NavBar = () => {
       <div className="hidden md:flex z-50 text-black gap-6 h-3 md:items-center">
         <img className="w-6 h-3" src={menu} alt="" />
         <div className="relative">
-          <span class="absolute inline-flex h-2 w-2 rounded-full bg-aqua-50"></span>
+          <span className="absolute inline-flex h-2 w-2 rounded-full bg-aqua-50"></span>
 
           <img className="h-5 " src={bell} alt="" />
         </div>
