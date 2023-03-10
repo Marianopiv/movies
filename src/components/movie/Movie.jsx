@@ -20,7 +20,7 @@ const Movie = ({ title, poster, vote, date }) => {
         {title}
       </p>
       <img
-        className={`w-80 h-48  rounded-md md:w-48 md:h-32 ${!date?"object-cover w-auto h-auto":""}`}
+        className={`w-80 h-48  rounded-md md:w-48 md:h-32 ${!date?"object-cover":""}`}
     
         src={poster}
         alt=""

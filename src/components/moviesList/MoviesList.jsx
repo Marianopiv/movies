@@ -8,7 +8,7 @@ import "../../home/home.css"
 
 const MoviesList = () => {
   const { list,added } = useContext(MoviesContext);
-  const {toogle,setToogle} = useAdd()
+  const {toogle,setToogle,error,setError} = useAdd()
 
   return (
     <>
@@ -16,7 +16,7 @@ const MoviesList = () => {
         <div className="flex justify-center items-center pb-7 md:justify-center md:pl-16">
           <h3 className="custom-text opacity-60 text-cream-50">Ver:</h3>
           <select
-            className="text-white custom-text bg-brown-50 md:bg-transparent   "
+            className="text-white custom-text bg-brown-50 md:bg-transparent"
             id="dropdown"
             name="dropdown"
             onChange={(e)=>setToogle(e.target.value)}
@@ -34,12 +34,16 @@ const MoviesList = () => {
         )
         :
         added && added.length > 0 ? (
-          <div className="flex justify-center flex-wrap w-screen md:w-auto flex-col gap-6 lg:pl-10 md:justify-start">
+          <div className="flex justify-center flex-wrap flex-col gap-6 lg:pl-10 md:justify-start">
             {added.slice(0, 4).map(({ file, name }, index) => (
               <Movie key={index} title={name} poster={file} />
             ))}
           </div>
-        ):<div className="w-screen h-screen"></div>}
+        ):<div className="flex justify-center flex-wrap gap-6 md:flex-col md:items-center lg:pl-10 invisible">
+        {list.slice(0, 4).map(({ id, title, backdrop_path,vote_average,release_date }) => (
+          <Movie key={id} title={title} poster={getImg(backdrop_path)} vote={vote_average} date={release_date} />
+        ))}
+      </div>}
       </div>
     </>
   );

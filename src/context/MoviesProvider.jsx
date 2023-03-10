@@ -27,7 +27,8 @@ const MoviesProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await axios.get(featuredEndpoint);
-      const destacado = response.data.results[Math.ceil(Math.random() * 15)];
+      console.log(response.data.results);
+      const destacado = response.data.results.find((item)=>item.title==="Puss in Boots: The Last Wish");
       setFeatured(destacado);
       setLoading(false);
     } catch (error) {

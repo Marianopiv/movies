@@ -135,7 +135,7 @@ const NewMovie = () => {
             customClass={`border bg-white ${
               percentage === 100 && newMovie.name ? "" : "opacity-60"
             }`}
-            action={percentage === 100 && newMovie.name ? handleAdd : undefined}
+            action={percentage === 100 && newMovie.name && !error ? handleAdd : undefined}
             text={"Subir Película"}
           />
           <Button

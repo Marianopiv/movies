@@ -33,7 +33,6 @@ const useAdd = () => {
     let file = event;
     if (file.type!=="image/jpeg") {
       setError(true)
-      return;
     }
 
     reader.onload = (event) => {
@@ -86,7 +85,7 @@ const useAdd = () => {
     setPercentage,
     percentage,
     error,
-    setError
+    setError,
   };
 };
 
