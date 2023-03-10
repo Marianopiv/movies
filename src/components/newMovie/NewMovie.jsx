@@ -133,7 +133,7 @@ const NewMovie = () => {
         <div className="flex flex-col gap-6 ">
           <Button
             customClass={`border dark:text-brown-50 bg-white ${
-              percentage === 100 && newMovie.name ? "" : "opacity-60"
+              percentage === 100 && newMovie.name &&!error ? "" : "opacity-60"
             }`}
             action={percentage === 100 && newMovie.name && !error ? handleAdd : undefined}
             text={"Subir Película"}
