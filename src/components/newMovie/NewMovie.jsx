@@ -97,19 +97,19 @@ const NewMovie = () => {
         ) : (
           <>
             <div className="flex flex-col md:w-96">
-              <p className="custom-text text-cream-50 text-left text-sm pb-4">
+              <p className={`custom-text text-cream-50 text-left text-sm pb-4 ${error?"text-center":""}`}>
                 {error?"¡ERROR! no se pudo cargar la película":percentage < 100
                   ? `Cargando ${percentage}`
                   : `${percentage} % cargado!`}
               </p>
-              <div className="w-72 h-1 flex items-center bg-cream-50 opacity-80 rounded-full md:w-96">
+              <div className={`${error?"w-80":"w-72"} h-1 flex items-center bg-cream-50 opacity-80 rounded-full md:w-96`}>
                 {percentage && percentage < 100 ? (
                   <div
-                    className={`w-${percentage} h-2  text-center text-xs text-white ${!error?"bg-aqua-50":"bg-red-500"} md:w-96 `}
+                    className={`w-${percentage} h-2 text-center text-xs text-white ${!error?"bg-aqua-50 w-72":"bg-red-500 w-80"} md:w-96 `}
                   ></div>
                 ) : (
                   <div
-                    className={`w-72 h-2  text-center text-xs text-white ${!error?"bg-aqua-50":"bg-red-500"} md:w-96`}
+                    className={`w-72 h-2 text-center text-xs text-white ${!error?"bg-aqua-50 w-72":"bg-red-500 w-80"} md:w-96`}
                   ></div>
                 )}
               </div>
@@ -132,7 +132,7 @@ const NewMovie = () => {
         </div>
         <div className="flex flex-col gap-6 ">
           <Button
-            customClass={`border bg-white ${
+            customClass={`border dark:text-brown-50 bg-white ${
               percentage === 100 && newMovie.name ? "" : "opacity-60"
             }`}
             action={percentage === 100 && newMovie.name && !error ? handleAdd : undefined}
