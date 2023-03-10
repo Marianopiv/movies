@@ -4,6 +4,7 @@ font-style: normal;
 font-weight: 400;
 font-size: 20px;
 line-height: 20px;
+
 /* identical to box height */
 
 letter-spacing: 4px;
@@ -44,17 +45,13 @@ text-align: center;
 letter-spacing: 4px;
 }
 
-.custom-dropdown {
+/* .custom-drop {
   font-family: 'Bebas Neue';
 font-style: normal;
 font-weight: 400;
 font-size: 20px;
 line-height: 20px;
 /* identical to box height */
-
-letter-spacing: 10px;
-}
-
 
 .lds-spinner {
   color: #64EEBC;

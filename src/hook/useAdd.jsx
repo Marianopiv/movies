@@ -32,6 +32,9 @@ const useAdd = () => {
     });
   };
 
+  //    const inputElement = document.querySelector('input[type="file"]');file = inputElement.files[0];const blob = new Blob([file], { type: file.type });
+ 
+
   const handleInputFileChange = (file) => {
     const reader = new FileReader();
 

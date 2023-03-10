@@ -51,7 +51,7 @@ const NewMovie = () => {
 
   if (addedTrue) {
     return (
-      <div className="w-screen custom-text text-white flex flex-col items-center justify-center h-3/4 md:h-screen gap-10">
+      <div className="w-screen custom-text text-white flex flex-col items-center justify-center h-screen gap-10">
         <h3 className="text-2xl">¡Felicidades!</h3>
         <p className="w-2/3 opacity-70">
           {newMovie.name} fue correctamente subida.
