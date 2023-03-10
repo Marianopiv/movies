@@ -102,14 +102,14 @@ const NewMovie = () => {
                   ? `Cargando ${percentage}`
                   : `${percentage} % cargado!`}
               </p>
-              <div class="w-72 h-1 flex items-center bg-cream-50 opacity-80 rounded-full md:w-96">
+              <div className="w-72 h-1 flex items-center bg-cream-50 opacity-80 rounded-full md:w-96">
                 {percentage && percentage < 100 ? (
                   <div
-                    class={`w-${percentage} h-2  text-center text-xs text-white ${!error?"bg-aqua-50":"bg-red-500"} md:w-96 `}
+                    className={`w-${percentage} h-2  text-center text-xs text-white ${!error?"bg-aqua-50":"bg-red-500"} md:w-96 `}
                   ></div>
                 ) : (
                   <div
-                    class={`w-72 h-2  text-center text-xs text-white ${!error?"bg-aqua-50":"bg-red-500"} md:w-96`}
+                    className={`w-72 h-2  text-center text-xs text-white ${!error?"bg-aqua-50":"bg-red-500"} md:w-96`}
                   ></div>
                 )}
               </div>
