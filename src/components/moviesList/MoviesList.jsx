@@ -30,7 +30,6 @@ const MoviesList = () => {
               Populares
             </option>
             <option className="bg-brown-50 text-white" value="option2">
-              
               Mis Peliculas
             </option>
           </select>
@@ -67,7 +66,6 @@ const MoviesList = () => {
           </div>
         ) : (
           <div className="sm:flex justify-center flex-wrap gap-6 md:flex-col md:items-center lg:pl-10 sm:invisible hidden">
-            
             {list
               .slice(0, 4)
               .map(

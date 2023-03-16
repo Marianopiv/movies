@@ -1,5 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { get } from "../axios";
+import { chooseMovie } from "../helper";
 
 export const MoviesContext = createContext();
 const MoviesProvider = ({ children }) => {
@@ -11,29 +13,23 @@ const MoviesProvider = ({ children }) => {
   );
   const [featured, setFeatured] = useState(null);
   const [loading, setLoading] = useState(false);
-  const endpoint =
-    "https://api.themoviedb.org/3/movie/popular?api_key=6f26fd536dd6192ec8a57e94141f8b20";
 
-  const featuredEndpoint =
-    "https://api.themoviedb.org/3/movie/now_playing?api_key=6f26fd536dd6192ec8a57e94141f8b20";
   const fetchData = async () => {
-    try {
-      const response = await axios.get(endpoint);
-      setList(response.data.results);
-    } catch (error) {}
+    const resultado = await get("/popular" + import.meta.env.VITE_API_KEY);
+    if (resultado) {
+      setList(resultado.results);
+    }
   };
 
   const fetchFeatured = async () => {
     setLoading(true);
-    try {
-      const response = await axios.get(featuredEndpoint);
-      const destacado = response.data.results.find(
-        (item) => item.title === "Knock at the Cabin"
-      );
-      setFeatured(destacado);
+    const resultado = await get("/now_playing" + import.meta.env.VITE_API_KEY);
+    if (resultado) {
+      const destacadoFinal = chooseMovie(resultado.results)
+      setFeatured(destacadoFinal);
       setLoading(false);
-    } catch (error) {
-      console.log("no anduvo");
+    } else {
+      setLoading(false);
     }
   };
 
