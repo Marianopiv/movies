@@ -13,6 +13,7 @@ const MoviesProvider = ({ children }) => {
   const [featured, setFeatured] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  console.log(import.meta.env.VITE_API_KEY)
   const fetchData = async () => {
     const resultado = await get("/popular" + import.meta.env.VITE_API_KEY);
     if (resultado) {
