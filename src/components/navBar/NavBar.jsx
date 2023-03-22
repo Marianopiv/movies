@@ -43,7 +43,7 @@ const NavBar = () => {
           onClick={() => setToogleMovie(!toogleMovie)}
           to={"/new-movie"}
         >
-          <p className=" text-4xl md:text-3xl font-sans text-white z-50 mb-0.5 md:mb-0 md:pt-1 md:pr-2">
+          <p className=" text-4xl md:text-3xl font-sans text-white z-50  md:mb-0 md:pt-1 md:pr-2">
             +
           </p>
           <p className="hidden md:flex custom-text text-white md:pt-3 md:pr-40 text-sm">
