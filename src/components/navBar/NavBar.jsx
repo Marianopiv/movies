@@ -6,7 +6,7 @@ import bell from "../../assets/bell.png";
 import { MoviesContext } from "../../context/MoviesProvider";
 import { getImg } from "../../helper";
 import "./navbar.css";
-
+import cross from "../../assets/plus.png"
 const NavBar = () => {
   const { setToogleMovie, toogleMovie, featured } = useContext(MoviesContext);
 
@@ -34,7 +34,8 @@ const NavBar = () => {
         </div>
       )}
       <div
-        className={`text-white rounded-full border flex justify-center md:w-fit items-center md:border-0  w-9 h-9 pb-2 z-50 md:hidden ${
+        
+        className={`text-white flex justify-center md:w-fit items-center md:border-0  w-9 h-9 py-auto z-50 md:hidden ${
           toogleMovie ? "invisible" : ""
         }`}
       >
@@ -43,7 +44,7 @@ const NavBar = () => {
           onClick={() => setToogleMovie(!toogleMovie)}
           to={"/new-movie"}
         >
-          <p className=" text-4xl md:text-3xl font-sans text-white z-50  md:mb-0 md:pt-1 md:pr-2">
+          <p className="md:flex my-auto text-4xl md:text-3xl font-sans text-white z-50 mb-3  md:mb-0 md:pt-1 md:pr-2">
             +
           </p>
           <p className="hidden md:flex custom-text text-white md:pt-3 md:pr-40 text-sm">
