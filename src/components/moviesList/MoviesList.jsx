@@ -36,7 +36,7 @@ const MoviesList = () => {
         </div>
         {toogle === "option1" ? (
           list && (
-            <div className="flex justify-center flex-wrap gap-4 md:flex-col md:items-center lg:pl-10 ">
+            <div className="flex z-50 justify-center flex-wrap gap-4 md:flex-col md:items-center lg:pl-10">
               {list
                 .slice(0, 4)
                 .map(
@@ -65,7 +65,7 @@ const MoviesList = () => {
             ))}
           </div>
         ) : (
-          <div className="sm:flex justify-center flex-wrap gap-6 md:flex-col md:items-center lg:pl-10 sm:invisible hidden">
+          <div className="sm:flex z-50 justify-center flex-wrap gap-6 md:flex-col md:items-center lg:pl-10 sm:invisible hidden">
             {list
               .slice(0, 4)
               .map(

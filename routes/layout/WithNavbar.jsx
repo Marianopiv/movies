@@ -17,14 +17,14 @@ const WithNavbar = () => {
             backgroundSize: "cover",
             overflow: "hidden",
           }}
-          className={`h-screen`}
+          className={``}
         >
           <NavBar />
           <Outlet />
         </div>
       ) : (
         <div
-          className={`h-screen`}
+          className={``}
         >
           <NavBar />
           <Outlet />

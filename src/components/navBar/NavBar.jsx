@@ -52,9 +52,9 @@ const NavBar = () => {
           </p>
         </Link>
       </div>
-      <p className="z-50 pl-2 navTitle md:hidden">liteflix</p>
+      <p className="z-50 pl-2 navTitle md:hidden">miravos</p>
       <div className="hidden md:flex gap-10 items-center">
-        <p className="z-50 relative navTitle">liteflix</p>
+        <p className="z-50 relative navTitle">miravos</p>
         <div
           className={`hidden md:flex text-white rounded-full border justify-center md:w-fit items-center md:border-0  w-9 h-9 pb-2 z-20 ${
             toogleMovie ? "invisible" : ""
