@@ -5,6 +5,7 @@ import Home from "../src/home/Home";
 import WithNavbar from "./layout/WithNavbar";
 import NewMovie from "./../src/components/newMovie/NewMovie";
 import Loading from "../src/UI/Loading";
+import DinamicPage from "../src/components/dinamicPage/DinamicPage";
 
 const Rutas = () => {
   const { loading } = useContext(MoviesContext);
@@ -15,10 +16,13 @@ const Rutas = () => {
         {loading ? (
           <Route path="/" element={<Loading />} />
         ) : (
-          <Route path="/" element={<WithNavbar />}>
-            <Route index element={<Home />} />
-            <Route path="new-movie" element={<NewMovie />} />
-          </Route>
+          <>
+            <Route path="/" element={<WithNavbar />}>
+              <Route index element={<Home />} />
+              <Route path="new-movie" element={<NewMovie />} />
+            </Route>
+            <Route path="dinamic-page/:id" element={<DinamicPage />} />
+          </>
         )}
       </Routes>
     </BrowserRouter>

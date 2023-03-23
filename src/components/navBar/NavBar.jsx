@@ -6,7 +6,7 @@ import bell from "../../assets/bell.png";
 import { MoviesContext } from "../../context/MoviesProvider";
 import { getImg } from "../../helper";
 import "./navbar.css";
-import cross from "../../assets/plus.png"
+import cross from "../../assets/plus.png";
 const NavBar = () => {
   const { setToogleMovie, toogleMovie, featured } = useContext(MoviesContext);
 
@@ -21,20 +21,15 @@ const NavBar = () => {
           {
             <div className="md:hidden absolute h-screen sm:h-96 w-screen bg-gradient-to-b from-transparent z-30 to-brown-50 bottom-18 sm:-bottom-8 "></div>
           }
-          {
-            <div className="md:hidden absolute h-96 w-screen bg-gradient-to-b from-transparent z-30 to-brown-50 bottom-8 sm:-bottom-10 "></div>
-          }
-          {
-            <img
+          <div className="md:hidden absolute h-96 w-screen bg-gradient-to-b from-transparent z-30 to-brown-50 bottom-8 sm:-bottom-10 "></div>
+          {/* <img
               className="w-screen absolute z-20 h-fit sm:h-fit object-cover sm:object-fill right-1 bg-gradient-to-b from-transparent to-brown-50"
               src={featured && getImg(featured.poster_path)}
               alt=""
-            />
-          }
+            /> */}
         </div>
       )}
       <div
-        
         className={`text-white flex justify-center md:w-fit items-center md:border-0  w-9 h-9 py-auto z-50 md:hidden ${
           toogleMovie ? "invisible" : ""
         }`}

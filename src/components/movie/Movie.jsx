@@ -3,9 +3,12 @@ import groupPlay from "../../assets/group-play.png";
 import "../../home/home.css";
 import star from "../../assets/star.png";
 import playLittle from "../../assets/playLittle.png";
-const Movie = ({ title, poster, vote, date }) => {
+import { Link } from "react-router-dom";
+const Movie = ({ title, poster, vote, date,id }) => {
   const [reveal, setReveal] = useState(false);
+
   return !reveal ? (
+    <Link to={`/dinamic-page/${id}`}>
     <div
       className="flex flex-col items-center relative hover:cursor-pointer"
       onMouseEnter={date && (() => setReveal(!reveal))}
@@ -27,7 +30,9 @@ const Movie = ({ title, poster, vote, date }) => {
         alt=""
       />
     </div>
+    </Link>
   ) : (
+    <Link to={`/dinamic-page/${id}`}>
     <div
       className="flex flex-col items-center relative hover:cursor-pointer"
       onMouseOut={() => setReveal(!reveal)}
@@ -58,6 +63,7 @@ const Movie = ({ title, poster, vote, date }) => {
         {date.slice(0, 4)}
       </p>
     </div>
+    </Link>
   );
 };
 

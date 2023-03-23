@@ -48,6 +48,7 @@ const MoviesList = () => {
                     release_date,
                   }) => (
                     <Movie
+                      id={id}
                       key={id}
                       title={title}
                       poster={getImg(backdrop_path)}

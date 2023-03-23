@@ -24,7 +24,7 @@ const MoviesProvider = ({ children }) => {
     setLoading(true);
     const resultado = await get("/now_playing" + import.meta.env.VITE_API_KEY);
     if (resultado) {
-      const destacadoFinal = chooseMovie(resultado.results)
+      const destacadoFinal = chooseMovie(resultado.results);
       setFeatured(destacadoFinal);
       setLoading(false);
     } else {

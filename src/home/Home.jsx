@@ -7,7 +7,7 @@ import MoviesList from "../components/moviesList/MoviesList";
 import { MoviesContext } from "../context/MoviesProvider";
 import { getImg } from "../helper";
 const Home = () => {
-  const { featured } = useContext(MoviesContext);
+  const { featured,list } = useContext(MoviesContext);
 
   return (
     <div
