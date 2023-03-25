@@ -13,8 +13,8 @@ const MoviesProvider = ({ children }) => {
   const [featured, setFeatured] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const fetchData = async () => {
-    const resultado = await get("/popular" + import.meta.env.VITE_API_KEY);
+  const fetchData = async (page) => {
+    const resultado = await get(`/popular${import.meta.env.VITE_API_KEY}&page=${page?page:1}`);
     if (resultado) {
       setList(resultado.results);
     }
@@ -54,6 +54,7 @@ const MoviesProvider = ({ children }) => {
         added,
         featured,
         loading,
+        fetchData
       }}
     >
       {children}

@@ -21,7 +21,7 @@ const Movie = ({ title, poster, vote, date, id,video }) => {
           {vote}
         </p>{" "}
         <div className="absolute w-80 h-48 md:w-48  md:h-32 bg-gradient-to-b from-gray-900 to-gray-900 hover:opacity-0 opacity-60 rounded-md"></div>{" "}
-        <p className="absolute text-white bottom-20 text-sm custom-text custom-movie md:top-10 md:left-3">
+        <p className={`absolute text-white bottom-20 text-sm custom-text custom-movie md:top-10 ${vote?"md:left-3":"right-30"}`}>
           {title}
         </p>
         <img

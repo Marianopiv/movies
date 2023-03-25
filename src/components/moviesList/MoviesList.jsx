@@ -7,15 +7,31 @@ import Movie from "../movie/Movie";
 import "../../home/home.css";
 
 const MoviesList = () => {
-  const { list, added } = useContext(MoviesContext);
+  const { list, added, fetchData } = useContext(MoviesContext);
   const { toogle, setToogle } = useAdd();
-  const [random, setRandom] = useState(0)
+  const [random, setRandom] = useState(0);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const pagination = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  const ITEMS_PER_PAGE = 4; // Number of items to display per page
 
   useEffect(() => {
-    setRandom(Math.round(Math.random()*14))
+    setRandom(Math.round(Math.random() * 14));
+  }, []);
 
-  }, [])
-  
+  const handlePageChange = (pageNumber) => {
+    fetchData(pageNumber);
+  };
+
+  const slicePages = (arr, num1, num2) => {
+    return arr.slice(num1, num2);
+  };
+
+  useEffect(() => {
+    list && setTotalPages(Math.ceil(list.length / ITEMS_PER_PAGE));
+    console.log(page);
+  }, [list, page]);
 
   return (
     <>
@@ -43,9 +59,9 @@ const MoviesList = () => {
         </div>
         {toogle === "option1" ? (
           list && (
-            <div className="flex z-50 justify-center flex-wrap gap-4 md:flex-col md:items-center lg:pl-10">
+            <div className="flex z-50 justify-center flex-wrap gap-4 md:flex-col md:items-center overflow-y-scroll lg:pl-10">
               {list
-                .slice(random,random+4)
+                .slice(ITEMS_PER_PAGE * (page - 1), ITEMS_PER_PAGE * page)
                 .map(
                   ({
                     id,
@@ -53,7 +69,7 @@ const MoviesList = () => {
                     backdrop_path,
                     vote_average,
                     release_date,
-                    video
+                    video,
                   }) => (
                     <Movie
                       id={id}
@@ -70,7 +86,7 @@ const MoviesList = () => {
           )
         ) : added && added.length > 0 ? (
           <div className="flex justify-center flex-col gap-6 w-screen md:w-auto md:h-96 lg:pl-10 md:justify-start">
-            {added.slice(0, 4).map(({ file, name,id }, index) => (
+            {added.slice(0, 4).map(({ file, name, id }, index) => (
               <Movie id={id} key={id} title={name} poster={file} />
             ))}
           </div>
@@ -91,6 +107,36 @@ const MoviesList = () => {
               )}
           </div>
         )}
+        {
+          <div className="flex justify-center gap-2 flex-wrap mx-2">
+            <button
+              className={`border-2 rounded-md p-1 ${
+                page === 1 ? "bg-gray-500" : ""
+              }`}
+              onClick={() => setPage(page - 1)}
+              disabled={page === 1}
+            >
+              Back
+            </button>
+            {slicePages(pagination, page, page + 4).map((item) => (
+              <button
+                className="border-2 rounded-md p-1"
+                onClick={() => handlePageChange(item)}
+              >
+                {item}
+              </button>
+            ))}
+            <button
+              disabled={page === 5}
+              className={`border-2 rounded-md p-1 ${
+                page === 5 ? "bg-gray-500" : ""
+              }`}
+              onClick={() => setPage(page + 1)}
+            >
+              Forward
+            </button>
+          </div>
+        }
       </div>
     </>
   );

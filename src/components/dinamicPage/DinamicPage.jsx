@@ -6,33 +6,32 @@ import { getImg } from "../../helper";
 import { GiBackwardTime } from "react-icons/gi";
 import { API_VIDEO } from "../../config/config";
 import axios from "axios";
+import Loading from "../../UI/Loading";
 
 const DinamicPage = () => {
   const { list, added } = useContext(MoviesContext);
   const { width, desktopStyles, mobileStyles, tabletStyles } =
     useContext(LayoutContext);
   const [chosen, setChosen] = useState(null);
-  const [video, setVideo] = useState(null)
+  const [video, setVideo] = useState(null);
   const { id } = useParams();
 
-  const fetchVideo =async () => {
+  const fetchVideo = async () => {
     try {
-      const result = await axios.get(API_VIDEO(id))
-      console.log(result.data.results.find((item)=>item))
-      setVideo(result.data.results.find((item)=>item))
+      const result = await axios.get(API_VIDEO(id));
+      console.log(result.data.results.find((item) => item));
+      setVideo(result.data.results.find((item) => item));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  
-  }
+  };
 
   useEffect(() => {
-   
     if (added.length > 0) {
       setChosen(added.find((item) => console.log(item.id) && item.id === id));
     }
     if (list) {
-      fetchVideo()
+      fetchVideo();
       setChosen(list.find((item) => Number(item.id) === Number(id)));
     }
   }, [list.id, chosen]);
@@ -45,7 +44,7 @@ const DinamicPage = () => {
 
   return (
     <div
-      className="w-screen flex flex-col gap-16 h-screen relative overflow-scroll"
+      className="w-screen flex flex-col gap-16 relative overflow-scroll"
       style={
         width > 768
           ? desktopStyles(chosen)
@@ -68,24 +67,29 @@ const DinamicPage = () => {
       />
       <GiBackwardTime
         onClick={() => navigate("/")}
-        className="w-14 h-14 text-white mx-auto hover:cursor-pointer z-50 "
+        className="w-14 h-24 text-white mx-auto hover:cursor-pointer z-50 "
       />
       <h1 className="z-50 text-aqua-50 pt-8">{chosen?.original_title}</h1>
       <p className="text-white  text-lg z-50 text-left custom-description px-4 md:px-24">
         {chosen?.overview}
       </p>
 
-        {video&&
+      {video ? (
         <div className="flex justify-center">
-        <iframe 
-          className="z-50 w-96 h-96"
-              width="560"
-              
-              src={`https://www.youtube-nocookie.com/embed/${video.key}`}
-              title={video}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe></div>}
+          <iframe
+            className="z-50 w-96 h-96"
+            width="560"
+            src={`https://www.youtube-nocookie.com/embed/${video.key}`}
+            title={video}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+      ) : (
+        <div className="h-96 text-2xl flex justify-center text-white">
+          Movie Not found
+        </div>
+      )}
     </div>
   );
 };
