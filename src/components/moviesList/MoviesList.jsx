@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import arrow from "../../assets/arrow.png";
 import { MoviesContext } from "../../context/MoviesProvider";
 import { getImg } from "../../helper";
@@ -8,12 +8,19 @@ import "../../home/home.css";
 
 const MoviesList = () => {
   const { list, added } = useContext(MoviesContext);
-  const { toogle, setToogle, error, setError } = useAdd();
+  const { toogle, setToogle } = useAdd();
+  const [random, setRandom] = useState(0)
+
+  useEffect(() => {
+    setRandom(Math.round(Math.random()*14))
+
+  }, [])
+  
 
   return (
     <>
       <div
-        className={`bg-brown-50 md:bg-transparent z-50 py-16 ${
+        className={`bg-brown-50 md:bg-transparent z-30 py-16 ${
           toogle === "option1" ? "md:py-0 md:pt-10" : "md:py-16"
         }  md:w-1/2 md:flex-col md:pl-6 lg:pl-10 lg:pt-4`}
       >
@@ -38,7 +45,7 @@ const MoviesList = () => {
           list && (
             <div className="flex z-50 justify-center flex-wrap gap-4 md:flex-col md:items-center lg:pl-10">
               {list
-                .slice(0, 4)
+                .slice(random,random+4)
                 .map(
                   ({
                     id,
@@ -46,6 +53,7 @@ const MoviesList = () => {
                     backdrop_path,
                     vote_average,
                     release_date,
+                    video
                   }) => (
                     <Movie
                       id={id}
@@ -54,6 +62,7 @@ const MoviesList = () => {
                       poster={getImg(backdrop_path)}
                       vote={vote_average}
                       date={release_date}
+                      video={video}
                     />
                   )
                 )}
@@ -61,8 +70,8 @@ const MoviesList = () => {
           )
         ) : added && added.length > 0 ? (
           <div className="flex justify-center flex-col gap-6 w-screen md:w-auto md:h-96 lg:pl-10 md:justify-start">
-            {added.slice(0, 4).map(({ file, name }, index) => (
-              <Movie key={index} title={name} poster={file} />
+            {added.slice(0, 4).map(({ file, name,id }, index) => (
+              <Movie id={id} key={id} title={name} poster={file} />
             ))}
           </div>
         ) : (

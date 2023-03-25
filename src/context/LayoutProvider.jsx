@@ -32,8 +32,13 @@ const LayoutProvider = ({ children }) => {
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
   });
+  const tabletStyles = (param) => ({
+    backgroundImage: `url(${param && getImg(param.poster_path)})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+  });
   return (
-    <LayoutContext.Provider value={{ width, desktopStyles, mobileStyles }}>
+    <LayoutContext.Provider value={{ width, desktopStyles, mobileStyles,tabletStyles }}>
       {children}
     </LayoutContext.Provider>
   );

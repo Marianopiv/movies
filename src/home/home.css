@@ -45,6 +45,10 @@ text-align: center;
 letter-spacing: 4px;
 }
 
+.custom-description {
+  font-family: 'Work Sans', sans-serif;
+}
+
 @media screen and (min-width: 430px) and (max-width: 630px) {
   .custom-background{
     display: block;

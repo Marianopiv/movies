@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Button from "../UI/Button";
 import "./home.css";
 import arrow from "../assets/Path 2.png";
 import plus from "../assets/plus.png";
 import MoviesList from "../components/moviesList/MoviesList";
 import { MoviesContext } from "../context/MoviesProvider";
-import { getImg } from "../helper";
+
 const Home = () => {
   const { featured,list } = useContext(MoviesContext);
+
 
   return (
     <div

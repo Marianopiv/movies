@@ -3,42 +3,89 @@ import { useNavigate, useParams } from "react-router-dom";
 import { LayoutContext } from "../../context/LayoutProvider";
 import { MoviesContext } from "../../context/MoviesProvider";
 import { getImg } from "../../helper";
-import { GiBackwardTime } from 'react-icons/gi';
+import { GiBackwardTime } from "react-icons/gi";
+import { API_VIDEO } from "../../config/config";
+import axios from "axios";
 
 const DinamicPage = () => {
   const { list, added } = useContext(MoviesContext);
-  const { width, desktopStyles, mobileStyles } = useContext(LayoutContext);
+  const { width, desktopStyles, mobileStyles, tabletStyles } =
+    useContext(LayoutContext);
   const [chosen, setChosen] = useState(null);
+  const [video, setVideo] = useState(null)
   const { id } = useParams();
 
+  const fetchVideo =async () => {
+    try {
+      const result = await axios.get(API_VIDEO(id))
+      console.log(result.data.results.find((item)=>item))
+      setVideo(result.data.results.find((item)=>item))
+    } catch (error) {
+      console.log(error)
+    }
+  
+  }
+
   useEffect(() => {
+   
+    if (added.length > 0) {
+      setChosen(added.find((item) => console.log(item.id) && item.id === id));
+    }
     if (list) {
-      setChosen(list.find((item) => item.id === Number(id)));
+      fetchVideo()
+      setChosen(list.find((item) => Number(item.id) === Number(id)));
     }
   }, [list.id, chosen]);
+  console.log(id);
+  console.log(added);
   console.log(chosen);
+  /* console.log(chosen.video) */
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
-    <div 
-    className="w-screen flex flex-col gap-16 h-screen relative"
-    style={width > 768 ? desktopStyles(chosen) : mobileStyles(chosen)}
+    <div
+      className="w-screen flex flex-col gap-16 h-screen relative overflow-scroll"
+      style={
+        width > 768
+          ? desktopStyles(chosen)
+          : width < 768 && width > 480
+          ? tabletStyles(chosen)
+          : mobileStyles(chosen)
+      }
     >
-    <GiBackwardTime onClick={()=>navigate("/")} className="w-14 h-14 text-white mx-auto hover:cursor-pointer z-50"/>
-      <h1 className="z-50 text-aqua-50 pt-10">{chosen?.original_title}</h1>
-      <p className="text-white px-10 z-50 text-3xl text-left">{chosen?.overview}</p>
-      <div className="md:hidden absolute w-screen h-screen top-0">
-          {
-            <div className="md:hidden absolute h-screen sm:h-96 w-screen bg-gradient-to-b from-transparent z-30 to-brown-50 bottom-18 sm:-bottom-8 "></div>
-          }
-          <div className="md:hidden absolute h-96 w-screen bg-gradient-to-b from-transparent z-30 to-brown-50 bottom-8 sm:-bottom-10 "></div>
-          {/* <img
-              className="w-screen absolute z-20 h-fit sm:h-fit object-cover sm:object-fill right-1 bg-gradient-to-b from-transparent to-brown-50"
-              src={featured && getImg(featured.poster_path)}
-              alt=""
-            /> */}
-        </div>
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "110%",
+          content: "''", // use the ::before pseudo-element
+          zIndex: "5",
+          backgroundColor: "rgba(0, 0, 0, 0.7)", // add semi-transparent black color
+        }}
+      />
+      <GiBackwardTime
+        onClick={() => navigate("/")}
+        className="w-14 h-14 text-white mx-auto hover:cursor-pointer z-50 "
+      />
+      <h1 className="z-50 text-aqua-50 pt-8">{chosen?.original_title}</h1>
+      <p className="text-white  text-lg z-50 text-left custom-description px-4 md:px-24">
+        {chosen?.overview}
+      </p>
+
+        {video&&
+        <div className="flex justify-center">
+        <iframe 
+          className="z-50 w-96 h-96"
+              width="560"
+              
+              src={`https://www.youtube-nocookie.com/embed/${video.key}`}
+              title={video}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe></div>}
     </div>
   );
 };
