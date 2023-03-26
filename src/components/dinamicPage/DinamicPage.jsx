@@ -86,7 +86,7 @@ const DinamicPage = () => {
       </p>
 
       {loading ? (
-        <div className="flex h-96 justify-center">
+        <div className="flex h-96 justify-center dark:bg-brown-50">
           <Loading />
         </div>
       ) : video ? (
