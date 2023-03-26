@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { get } from "../axios";
+import { LANGUAGE } from "../config/config";
 import { chooseMovie } from "../helper";
 
 export const MoviesContext = createContext();
@@ -14,7 +15,7 @@ const MoviesProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
   const fetchData = async (page) => {
-    const resultado = await get(`/popular${import.meta.env.VITE_API_KEY}&page=${page?page:1}`);
+    const resultado = await get(`/popular${import.meta.env.VITE_API_KEY}&page=${page?page:1}&language=${LANGUAGE}`);
     if (resultado) {
       setList(resultado.results);
     }
@@ -22,7 +23,7 @@ const MoviesProvider = ({ children }) => {
 
   const fetchFeatured = async () => {
     setLoading(true);
-    const resultado = await get(`/popular${import.meta.env.VITE_API_KEY}&page=${Math.floor(Math.random()*4)}`);
+    const resultado = await get(`/popular${import.meta.env.VITE_API_KEY}&page=${Math.floor(Math.random()*4)}&language=${LANGUAGE}`);
     console.log(resultado)
     if (resultado) {
       const destacadoFinal = chooseMovie(resultado.results);

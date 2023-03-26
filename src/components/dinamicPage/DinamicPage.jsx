@@ -16,6 +16,7 @@ const DinamicPage = () => {
   const { loading, setLoading } = useLoad();
   const [chosen, setChosen] = useState(null);
   const [chosenFeatured, setChosenFeatured] = useState(null);
+  const [chosenAdded, setChosenAdded] = useState(null)
   const [video, setVideo] = useState(null);
   const { id } = useParams();
 
@@ -34,7 +35,7 @@ const DinamicPage = () => {
 
   useEffect(() => {
     if (added.length > 0) {
-      setChosen(added.find((item) => console.log(item.id) && item.id === id));
+      setChosenAdded(added.find((item) => console.log(item.id) && item.id === id));
     }
     if (list) {
       fetchVideo();
@@ -51,6 +52,7 @@ const DinamicPage = () => {
   const navigate = useNavigate();
   const reset = () => {
     setChosen(null);
+    setChosenFeatured(null)
     navigate("/");
   };
 
@@ -59,13 +61,14 @@ const DinamicPage = () => {
       className="w-screen flex flex-col gap-16 md:gap-8 relative overflow-scroll animate__animated animate__fadeIn dark:bg-brown-50"
       style={
         width > 768
-          ? desktopStyles(chosen||chosenFeatured)
+          ? desktopStyles(chosen || chosenFeatured)
           : width < 768 && width > 480
-          ? tabletStyles(chosen||chosenFeatured)
-          : mobileStyles(chosen||chosenFeatured)
+          ? tabletStyles(chosen || chosenFeatured)
+          : mobileStyles(chosen || chosenFeatured)
       }
     >
-      <div className="dark:bg-brown-50"
+      <div
+        className="dark:bg-brown-50"
         style={{
           position: "absolute",
           top: 0,
@@ -81,9 +84,11 @@ const DinamicPage = () => {
         onClick={reset}
         className="w-14 h-24 text-white mx-auto hover:cursor-pointer z-50 "
       />
-      <h1 className="z-50 text-aqua-50 pt-8">{chosen?.original_title||chosenFeatured?.original_title}</h1>
+      <h1 className="z-50 text-aqua-50 pt-8">
+        {chosen?.title || chosenFeatured?.title}
+      </h1>
       <p className="text-white  text-lg z-50 text-left custom-description px-4 md:px-24">
-        {chosen?.overview||chosenFeatured?.overview}
+        {chosen?.overview || chosenFeatured?.overview}
       </p>
 
       {loading ? (
@@ -102,7 +107,7 @@ const DinamicPage = () => {
           ></iframe>
         </div>
       ) : (
-        <div className="h-96 items-center z-50 text-2xl flex justify-center text-white">
+        <div className="h-96 md:items-center z-50 text-2xl flex justify-center text-white">
           Youtube video not available :(
         </div>
       )}

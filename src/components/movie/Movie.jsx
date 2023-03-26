@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import groupPlay from "../../assets/group-play.png";
 import "../../home/home.css";
 import star from "../../assets/star.png";
-import playLittle from "../../assets/playLittle.png";
 import { Link } from "react-router-dom";
 const Movie = ({ title, poster, vote, date, id,video }) => {
   const [reveal, setReveal] = useState(false);
