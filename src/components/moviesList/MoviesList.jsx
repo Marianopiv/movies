@@ -9,16 +9,11 @@ import "../../home/home.css";
 const MoviesList = () => {
   const { list, added, fetchData } = useContext(MoviesContext);
   const { toogle, setToogle } = useAdd();
-  const [random, setRandom] = useState(0);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const pagination = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  const ITEMS_PER_PAGE = 4; // Number of items to display per page
-
-  useEffect(() => {
-    setRandom(Math.round(Math.random() * 14));
-  }, []);
+  const ITEMS_PER_PAGE = 4;
 
   const handlePageChange = (pageNumber) => {
     fetchData(pageNumber);
@@ -30,7 +25,6 @@ const MoviesList = () => {
 
   useEffect(() => {
     list && setTotalPages(Math.ceil(list.length / ITEMS_PER_PAGE));
-    console.log(page);
   }, [list, page]);
 
   return (
@@ -107,8 +101,8 @@ const MoviesList = () => {
               )}
           </div>
         )}
-        {
-          <div className="flex justify-center gap-2 flex-wrap mx-2">
+        {toogle === "option1"&&
+          <div className="flex justify-center gap-2 flex-wrap mx-2 pt-4">
             <button
               className={`border-2 rounded-md p-1 ${
                 page === 1 ? "bg-gray-500" : ""
@@ -133,7 +127,7 @@ const MoviesList = () => {
               }`}
               onClick={() => setPage(page + 1)}
             >
-              Forward
+              next
             </button>
           </div>
         }

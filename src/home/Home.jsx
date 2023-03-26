@@ -5,6 +5,7 @@ import arrow from "../assets/Path 2.png";
 import plus from "../assets/plus.png";
 import MoviesList from "../components/moviesList/MoviesList";
 import { MoviesContext } from "../context/MoviesProvider";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { featured,list } = useContext(MoviesContext);
@@ -22,7 +23,9 @@ const Home = () => {
           {featured && featured.title}
         </h1>
         <div className="flex flex-col gap-5 h-38 justify-end  text-cream-50 z-50 lg:flex-row">
+        <Link className="text-white hover:text-aqua-50" to={`/dinamic-page/${featured?.id}`}>
           <Button icon={arrow} text={"reproducir"} />
+          </Link>
           <Button
             customClass={"border border-zinc-500 md:bg-transparent"}
             icon={plus}

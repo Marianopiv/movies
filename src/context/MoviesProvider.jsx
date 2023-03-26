@@ -22,7 +22,8 @@ const MoviesProvider = ({ children }) => {
 
   const fetchFeatured = async () => {
     setLoading(true);
-    const resultado = await get("/now_playing" + import.meta.env.VITE_API_KEY);
+    const resultado = await get(`/popular${import.meta.env.VITE_API_KEY}`);
+    console.log(resultado)
     if (resultado) {
       const destacadoFinal = chooseMovie(resultado.results);
       setFeatured(destacadoFinal);
@@ -54,7 +55,7 @@ const MoviesProvider = ({ children }) => {
         added,
         featured,
         loading,
-        fetchData
+        fetchData,
       }}
     >
       {children}
