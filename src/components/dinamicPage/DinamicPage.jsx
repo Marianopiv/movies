@@ -64,7 +64,7 @@ const DinamicPage = () => {
           : mobileStyles(chosen)
       }
     >
-      <div
+      <div className="dark:bg-brown-50"
         style={{
           position: "absolute",
           top: 0,
