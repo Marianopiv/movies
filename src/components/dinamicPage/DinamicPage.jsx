@@ -64,7 +64,7 @@ const DinamicPage = () => {
           : mobileStyles(chosen)
       }
     >
-      <div className="dark:bg-brown-50"
+      <div className="dgiark:bg-brown-50"
         style={{
           position: "absolute",
           top: 0,
@@ -90,7 +90,7 @@ const DinamicPage = () => {
           <Loading />
         </div>
       ) : video ? (
-        <div className="flex justify-center">
+        <div className="flex justify-center dark:bg-brown-50">
           <iframe
             className="z-50 w-96 h-96 md:h-screen md:pb-48 md:w-screen md:px-10  md:overflow-visible"
             width="560"
