@@ -55,7 +55,7 @@ const DinamicPage = () => {
 
   return (
     <div
-      className="w-screen flex flex-col gap-16 md:gap-8 relative overflow-scroll animate__animated animate__fadeIn"
+      className="w-screen flex flex-col gap-16 md:gap-8 relative overflow-scroll animate__animated animate__fadeIn dark:bg-brown-50"
       style={
         width > 768
           ? desktopStyles(chosen)
@@ -64,7 +64,7 @@ const DinamicPage = () => {
           : mobileStyles(chosen)
       }
     >
-      <div className="dgiark:bg-brown-50"
+      <div className="dark:bg-brown-50"
         style={{
           position: "absolute",
           top: 0,
@@ -90,9 +90,9 @@ const DinamicPage = () => {
           <Loading />
         </div>
       ) : video ? (
-        <div className="flex justify-center dark:bg-brown-50">
+        <div className="flex justify-center dark:bg-transparent">
           <iframe
-            className="z-50 w-96 h-96 md:h-screen md:pb-48 md:w-screen md:px-10  md:overflow-visible dark:bg-brown-50"
+            className="z-50 w-96 h-60 md:h-screen md:pb-48 md:w-screen md:px-10  md:overflow-visible dark:bg-brown-50"
             width="560"
             src={`https://www.youtube-nocookie.com/embed/${video.key}`}
             title={video}
