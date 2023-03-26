@@ -1,3 +1,5 @@
-export const getImg = (img) => `https://image.tmdb.org/t/p/w500${img}`
+import { API_IMG_PREFIX__HD } from "../config/config"
+
+export const getImg = (img) => `${API_IMG_PREFIX__HD}${img}`
 
 export const chooseMovie = (arr) => arr[Math.floor(Math.random() * 20)]

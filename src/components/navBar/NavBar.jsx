@@ -22,11 +22,6 @@ const NavBar = () => {
             <div className="md:hidden absolute h-screen sm:h-96 w-screen bg-gradient-to-b from-transparent z-30 to-brown-50 bottom-18 sm:-bottom-8 "></div>
           }
           <div className="md:hidden absolute h-96 w-screen bg-gradient-to-b from-transparent z-30 to-brown-50 bottom-8 sm:-bottom-10 "></div>
-          {/* <img
-              className="w-screen absolute z-20 h-fit sm:h-fit object-cover sm:object-fill right-1 bg-gradient-to-b from-transparent to-brown-50"
-              src={featured && getImg(featured.poster_path)}
-              alt=""
-            /> */}
         </div>
       )}
       <div

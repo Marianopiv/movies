@@ -15,6 +15,7 @@ const DinamicPage = () => {
     useContext(LayoutContext);
   const { loading, setLoading } = useLoad();
   const [chosen, setChosen] = useState(null);
+  const [chosenFeatured, setChosenFeatured] = useState(null);
   const [video, setVideo] = useState(null);
   const { id } = useParams();
 
@@ -39,10 +40,10 @@ const DinamicPage = () => {
       fetchVideo();
       setChosen(list.find((item) => Number(item.id) === Number(id)));
     }
-    /* if (featured) {
+    if (featured) {
       fetchVideo();
-      setChosen(featured);
-    } */
+      setChosenFeatured(featured);
+    }
   }, [list.id, chosen]);
   console.log(id);
   console.log(chosen);
@@ -58,10 +59,10 @@ const DinamicPage = () => {
       className="w-screen flex flex-col gap-16 md:gap-8 relative overflow-scroll animate__animated animate__fadeIn dark:bg-brown-50"
       style={
         width > 768
-          ? desktopStyles(chosen)
+          ? desktopStyles(chosen||chosenFeatured)
           : width < 768 && width > 480
-          ? tabletStyles(chosen)
-          : mobileStyles(chosen)
+          ? tabletStyles(chosen||chosenFeatured)
+          : mobileStyles(chosen||chosenFeatured)
       }
     >
       <div className="dark:bg-brown-50"
@@ -80,9 +81,9 @@ const DinamicPage = () => {
         onClick={reset}
         className="w-14 h-24 text-white mx-auto hover:cursor-pointer z-50 "
       />
-      <h1 className="z-50 text-aqua-50 pt-8">{chosen?.original_title}</h1>
+      <h1 className="z-50 text-aqua-50 pt-8">{chosen?.original_title||chosenFeatured?.original_title}</h1>
       <p className="text-white  text-lg z-50 text-left custom-description px-4 md:px-24">
-        {chosen?.overview}
+        {chosen?.overview||chosenFeatured?.overview}
       </p>
 
       {loading ? (
@@ -101,8 +102,8 @@ const DinamicPage = () => {
           ></iframe>
         </div>
       ) : (
-        <div className="h-96 z-50 text-2xl flex justify-center text-white">
-          Movie Not found
+        <div className="h-96 items-center z-50 text-2xl flex justify-center text-white">
+          Youtube video not available :(
         </div>
       )}
     </div>
