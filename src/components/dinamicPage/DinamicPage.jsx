@@ -92,7 +92,7 @@ const DinamicPage = () => {
       ) : video ? (
         <div className="flex justify-center dark:bg-brown-50">
           <iframe
-            className="z-50 w-96 h-96 md:h-screen md:pb-48 md:w-screen md:px-10  md:overflow-visible"
+            className="z-50 w-96 h-96 md:h-screen md:pb-48 md:w-screen md:px-10  md:overflow-visible dark:bg-brown-50"
             width="560"
             src={`https://www.youtube-nocookie.com/embed/${video.key}`}
             title={video}
