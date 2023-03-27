@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { get } from "../axios";
 import { API_SEARCH, LANGUAGE } from "../config/config";
 import { chooseMovie } from "../helper";
@@ -61,6 +62,9 @@ const MoviesProvider = ({ children }) => {
     setSearched({ ...searched, value });
     console.log(searched);
   };
+
+  
+
   useEffect(() => {
     fetchData();
     fetchFeatured();
@@ -84,7 +88,7 @@ const MoviesProvider = ({ children }) => {
         handleInput,
         searched,
         setSearched,
-        setFeatured,
+        setFeatured
       }}
     >
       {children}

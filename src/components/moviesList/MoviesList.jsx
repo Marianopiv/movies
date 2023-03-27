@@ -10,7 +10,7 @@ const MoviesList = () => {
   const { toogle, setToogle } = useAdd();
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const pagination = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const pagination = [0,1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const ITEMS_PER_PAGE = 4;
 
@@ -109,6 +109,7 @@ const MoviesList = () => {
             </button>
             {slicePages(pagination, page, page + 4).map((item) => (
               <button
+                
                 className="border-2 rounded-md p-1"
                 onClick={() => handlePageChange(item)}
               >
