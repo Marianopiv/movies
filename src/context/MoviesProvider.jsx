@@ -24,7 +24,7 @@ const MoviesProvider = ({ children }) => {
 
   const fetchFeatured = async () => {
     setLoading(true);
-    const resultado = await get(`/popular${import.meta.env.VITE_API_KEY}&page=${Math.floor(Math.random()*4)}&language=${LANGUAGE}`);
+    const resultado = await get(`/popular${import.meta.env.VITE_API_KEY}&page=${Math.floor(Math.random()*8)}&language=${LANGUAGE}`);
     console.log(resultado)
     if (resultado) {
       const destacadoFinal = chooseMovie(resultado.results);
