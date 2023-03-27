@@ -47,7 +47,7 @@ const MoviesSearch = () => {
       <button onClick={handleSearch}>Search</button>
       <div className="flex flex-wrap gap-8 justify-center">
         {
-          list?.map(
+          list?.filter((item)=>item.backdrop_path).map(
             ({
               id,
               title,
