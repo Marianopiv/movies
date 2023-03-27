@@ -13,10 +13,14 @@ const MoviesProvider = ({ children }) => {
   );
   const [featured, setFeatured] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [searched, setSearched] = useState(null)
+  const [searched, setSearched] = useState(null);
 
   const fetchData = async (page) => {
-    const resultado = await get(`/popular${import.meta.env.VITE_API_KEY}&page=${page?page:1}&language=${LANGUAGE}`);
+    const resultado = await get(
+      `/popular${import.meta.env.VITE_API_KEY}&page=${
+        page ? page : 1
+      }&language=${LANGUAGE}`
+    );
     if (resultado) {
       setList(resultado.results);
     }
@@ -24,12 +28,16 @@ const MoviesProvider = ({ children }) => {
 
   const fetchFeatured = async () => {
     setLoading(true);
-    const resultado = await get(`/popular${import.meta.env.VITE_API_KEY}&page=${Math.floor(Math.random()*8)}&language=${LANGUAGE}`);
-    console.log(resultado)
+    const resultado = await get(
+      `/popular${import.meta.env.VITE_API_KEY}&page=${Math.floor(
+        Math.random() * 8
+      )}&language=${LANGUAGE}`
+    );
+    console.log(resultado);
     if (resultado) {
       const destacadoFinal = chooseMovie(resultado.results);
       setFeatured(destacadoFinal);
-      setLoading(false);
+      !featured ? fetchFeatured() : setLoading(false);
     } else {
       setLoading(false);
     }
@@ -41,8 +49,10 @@ const MoviesProvider = ({ children }) => {
   };
 
   const fetchSearch = async (data) => {
-    const result = await get(`search/multi?api_key=d552348db4772226059dbcff1f91d483&language=${LANGUAGE}&page=1&include_adult=false&query=${data}`)
-  }
+    const result = await get(
+      `search/multi?api_key=d552348db4772226059dbcff1f91d483&language=${LANGUAGE}&page=1&include_adult=false&query=${data}`
+    );
+  };
   useEffect(() => {
     fetchData();
     fetchFeatured();
