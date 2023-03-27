@@ -1,6 +1,7 @@
+import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
 import { get } from "../axios";
-import { LANGUAGE } from "../config/config";
+import { API_SEARCH, LANGUAGE } from "../config/config";
 import { chooseMovie } from "../helper";
 
 export const MoviesContext = createContext();
@@ -29,15 +30,15 @@ const MoviesProvider = ({ children }) => {
   const fetchFeatured = async () => {
     setLoading(true);
     const resultado = await get(
-      `/popular${import.meta.env.VITE_API_KEY}&page=${Math.floor(
-        Math.random() * 8
-      )}&language=${LANGUAGE}`
+      `/popular${import.meta.env.VITE_API_KEY}&page=${
+        1 + Math.floor(Math.random() * 8)
+      }&language=${LANGUAGE}`
     );
     console.log(resultado);
     if (resultado) {
       const destacadoFinal = chooseMovie(resultado.results);
       setFeatured(destacadoFinal);
-      !featured ? fetchFeatured() : setLoading(false);
+      !featured && !destacadoFinal ? fetchFeatured() : setLoading(false);
     } else {
       setLoading(false);
     }
@@ -48,10 +49,17 @@ const MoviesProvider = ({ children }) => {
     setAdded([...added, movie]);
   };
 
-  const fetchSearch = async (data) => {
-    const result = await get(
-      `search/multi?api_key=d552348db4772226059dbcff1f91d483&language=${LANGUAGE}&page=1&include_adult=false&query=${data}`
-    );
+  const fetchSearch = async (searched) => {
+    const { value } = searched;
+    const result = await axios.get(API_SEARCH + value);
+    console.log(result.data.results);
+    setList(result.data.results)
+  };
+
+  const handleInput = (e) => {
+    const { value } = e.target;
+    setSearched({ ...searched, value });
+    console.log(searched);
   };
   useEffect(() => {
     fetchData();
@@ -72,6 +80,11 @@ const MoviesProvider = ({ children }) => {
         featured,
         loading,
         fetchData,
+        fetchSearch,
+        handleInput,
+        searched,
+        setSearched,
+        setFeatured,
       }}
     >
       {children}

@@ -10,7 +10,7 @@ import useLoad from "../../hook/useLoad";
 import "animate.css";
 
 const DinamicPage = () => {
-  const { list, added, featured } = useContext(MoviesContext);
+  const { list, added, featured,searched } = useContext(MoviesContext);
   const { width, desktopStyles, mobileStyles, tabletStyles } =
     useContext(LayoutContext);
   const { loading, setLoading } = useLoad();
@@ -87,7 +87,7 @@ const DinamicPage = () => {
         className="w-14 h-24 text-white mx-auto hover:cursor-pointer z-50 "
       />
       <h1 className="z-50 text-aqua-50 pt-8">
-        {chosen?.title || chosenFeatured?.title}
+        {chosen?.title||chosen?.original_name || chosenFeatured?.title}
       </h1>
       <p className="text-white  text-lg z-50 text-left custom-description px-4 md:px-24">
         {chosen?.overview || chosenFeatured?.overview}
@@ -101,7 +101,7 @@ const DinamicPage = () => {
         <div className="flex justify-center dark:bg-transparent">
           <iframe
 
-            className="z-50 w-96 h-60 md:h-screen md:pb-48 md:w-screen md:px-10  md:overflow-visible dark:bg-brown-50"
+            className="z-50 w-96 h-60 md:h-screen md:pb-48 md:w-screen md:px-10  md:overflow-visible dark:bg-brown-50 animate__animated animate__backInUp"
             width="560"
             src={`https://www.youtube-nocookie.com/embed/${video.key}?autoplay=${autoPlay}`}
             title={video}
@@ -111,7 +111,7 @@ const DinamicPage = () => {
         </div>
       ) : (
         <div className="h-96 md:items-center z-50 text-2xl flex justify-center text-white">
-          Youtube video not available :(
+          Video de youtube no disponible :(
         </div>
       )}
     </div>
