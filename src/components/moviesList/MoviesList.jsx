@@ -48,7 +48,7 @@ const MoviesList = () => {
         </div>
         {toogle === "option1" ? (
           list && (
-            <div className="flex z-50 justify-center flex-wrap gap-4 md:flex-col md:items-center overflow-y-scroll lg:pl-10">
+            <div className="flex z-50 justify-center flex-wrap gap-4 md:flex-col md:items-center lg:pl-10">
               {list
                 .slice(ITEMS_PER_PAGE * (page - 1), ITEMS_PER_PAGE * page)
                 .map(

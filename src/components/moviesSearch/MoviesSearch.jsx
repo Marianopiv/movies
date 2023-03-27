@@ -32,6 +32,7 @@ const MoviesSearch = () => {
     setToogleSearch(true);
   };
   const reset = () => {
+    fetchData()
     setSearched(null);
     navigate(-1);
   };
