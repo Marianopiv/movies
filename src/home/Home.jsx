@@ -2,14 +2,12 @@ import React, { useContext, useEffect } from "react";
 import Button from "../UI/Button";
 import "./home.css";
 import arrow from "../assets/Path 2.png";
-import plus from "../assets/plus.png";
 import MoviesList from "../components/moviesList/MoviesList";
 import { MoviesContext } from "../context/MoviesProvider";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const { featured,list } = useContext(MoviesContext);
-
+  const { featured, list } = useContext(MoviesContext);
 
   return (
     <div
@@ -23,14 +21,18 @@ const Home = () => {
           {featured && featured.title}
         </h1>
         <div className="flex flex-col gap-5 h-38 justify-end  text-cream-50 z-50 lg:flex-row">
-        <Link className="text-white hover:text-aqua-50" to={`/dinamic-page/${featured?.id}`}>
-          <Button icon={arrow} text={"reproducir"} />
+          <Link
+            className="text-white hover:text-aqua-50 "
+            to={`/dinamic-page/${featured?.id}`}
+          >
+            <Button icon={arrow} text={"reproducir"} />
           </Link>
+          <Link className="text-white hover:text-aqua-50" to={`/movie-search`}>
           <Button
-            customClass={"border border-zinc-500 md:bg-transparent"}
-            icon={plus}
-            text={"mi lista"}
+            customClass={"border-zinc-500 border"}
+            text={"Buscar"}
           />
+          </Link>
         </div>
       </div>
       <MoviesList />

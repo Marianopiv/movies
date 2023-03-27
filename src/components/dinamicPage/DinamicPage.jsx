@@ -19,7 +19,7 @@ const DinamicPage = () => {
   const [chosenAdded, setChosenAdded] = useState(null)
   const [video, setVideo] = useState(null);
   const { id } = useParams();
-
+  const [autoPlay, setAutoPlay] = useState(false)
   const fetchVideo = async () => {
     setLoading(true);
     try {
@@ -43,6 +43,7 @@ const DinamicPage = () => {
     }
     if (featured) {
       fetchVideo();
+      setAutoPlay(true)
       setChosenFeatured(featured);
     }
   }, [list.id, chosen]);
@@ -53,7 +54,8 @@ const DinamicPage = () => {
   const reset = () => {
     setChosen(null);
     setChosenFeatured(null)
-    navigate("/");
+    setAutoPlay(false)
+    navigate(-1);
   };
 
   return (
@@ -98,9 +100,10 @@ const DinamicPage = () => {
       ) : video ? (
         <div className="flex justify-center dark:bg-transparent">
           <iframe
+
             className="z-50 w-96 h-60 md:h-screen md:pb-48 md:w-screen md:px-10  md:overflow-visible dark:bg-brown-50"
             width="560"
-            src={`https://www.youtube-nocookie.com/embed/${video.key}`}
+            src={`https://www.youtube-nocookie.com/embed/${video.key}?autoplay=${autoPlay}`}
             title={video}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen

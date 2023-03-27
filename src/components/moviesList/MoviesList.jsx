@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MoviesContext } from "../../context/MoviesProvider";
-import { getImg } from "../../helper";
+import { getImg, slicePages } from "../../helper";
 import useAdd from "../../hook/useAdd";
 import Movie from "../movie/Movie";
 import "../../home/home.css";
@@ -16,10 +16,6 @@ const MoviesList = () => {
 
   const handlePageChange = (pageNumber) => {
     fetchData(pageNumber);
-  };
-
-  const slicePages = (arr, num1, num2) => {
-    return arr.slice(num1, num2);
   };
 
   useEffect(() => {
@@ -100,13 +96,13 @@ const MoviesList = () => {
               )}
           </div>
         )}
-        {toogle === "option1"&&
+        {toogle === "option1" && (
           <div className="flex justify-center gap-2 flex-wrap mx-2 pt-4">
             <button
               className={`border-2 rounded-md p-1 ${
                 page === 1 ? "bg-gray-500" : ""
               }`}
-              onClick={() => setPage(page - 1)}
+              onClick={() => setPage(page - 4)}
               disabled={page === 1}
             >
               Back
@@ -124,12 +120,12 @@ const MoviesList = () => {
               className={`border-2 rounded-md p-1 ${
                 page === 5 ? "bg-gray-500" : ""
               }`}
-              onClick={() => setPage(page + 1)}
+              onClick={() => setPage(page + 4)}
             >
               next
             </button>
           </div>
-        }
+        )}
       </div>
     </>
   );
