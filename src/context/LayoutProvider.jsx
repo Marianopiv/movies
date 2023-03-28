@@ -21,19 +21,20 @@ const LayoutProvider = ({ children }) => {
   }, []);
 
   const desktopStyles = (param) => ({
-    backgroundImage: `url(${param && getImg(param.backdrop_path)})`,
+    backgroundImage: `url(${param?.file||getImg(param?.backdrop_path)})`,
     backgroundSize: "cover",
     overflow: "hidden",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
   });
-  const mobileStyles = (param) => ({
-    backgroundImage: `url(${param && getImg(param.poster_path)})`,
+  const mobileStyles = (param) => 
+  ({
+    backgroundImage: `url(${param?.file||getImg(param?.poster_path)})`,
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
   });
   const tabletStyles = (param) => ({
-    backgroundImage: `url(${param && getImg(param.poster_path)})`,
+    backgroundImage: `url(${param?.file||getImg(param?.poster_path)})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
   });

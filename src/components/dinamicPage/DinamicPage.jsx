@@ -1,106 +1,69 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useContext} from "react";
 import { LayoutContext } from "../../context/LayoutProvider";
 import { MoviesContext } from "../../context/MoviesProvider";
 import { GiBackwardTime } from "react-icons/gi";
-import { API_VIDEO } from "../../config/config";
-import axios from "axios";
 import Loading from "../../UI/Loading";
-import useLoad from "../../hook/useLoad";
 import "animate.css";
+import useDinamic from "../../hook/useDinamic";
+import { AiOutlineArrowLeft } from "react-icons/Ai";
+
+const dinamicStyles = {
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "110%",
+  content: "''",
+  zIndex: "5",
+  backgroundColor: "rgba(0, 0, 0, 0.7)",
+}
 
 const DinamicPage = () => {
-  const { list, added, featured,searched } = useContext(MoviesContext);
-  const { width, desktopStyles, mobileStyles, tabletStyles } =
-    useContext(LayoutContext);
-  const { loading, setLoading } = useLoad();
-  const [chosen, setChosen] = useState(null);
-  const [chosenFeatured, setChosenFeatured] = useState(null);
-  const [chosenAdded, setChosenAdded] = useState(null)
-  const [video, setVideo] = useState(null);
-  const { id } = useParams();
-  const [autoPlay, setAutoPlay] = useState(false)
-  const fetchVideo = async () => {
-    setLoading(true);
-    try {
-      const result = await axios.get(API_VIDEO(id));
-      console.log(result.data.results.find((item) => item));
-      setVideo(result.data.results.find((item) => item));
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (added.length > 0) {
-      setChosenAdded(added.find((item) => console.log(item.id) && item.id === id));
-    }
-    if (list) {
-      fetchVideo();
-      setChosen(list.find((item) => Number(item.id) === Number(id)));
-    }
-    if (featured) {
-      fetchVideo();
-      setAutoPlay(true)
-      setChosenFeatured(featured);
-    }
-  }, [list.id, chosen]);
-  console.log(id);
-  console.log(chosen);
-
-  const navigate = useNavigate();
-  const reset = () => {
-    setChosen(null);
-    setChosenFeatured(null)
-    setAutoPlay(false)
-    navigate(-1);
-  };
+  const { list, added, featured } = useContext(MoviesContext);
+  const { width, desktopStyles, mobileStyles, tabletStyles } = useContext(LayoutContext);
+  const {
+    chosen,
+    chosenFeatured,
+    video,
+    loading,
+    autoPlay,
+    reset,
+    chosenAdded,
+  } = useDinamic(list, added, featured);
 
   return (
     <div
       className="w-screen flex flex-col gap-16 md:gap-8 relative overflow-scroll animate__animated animate__fadeIn dark:bg-brown-50"
       style={
         width > 768
-          ? desktopStyles(chosen || chosenFeatured)
+          ? desktopStyles(chosenAdded||chosen || chosenFeatured)
           : width < 768 && width > 480
-          ? tabletStyles(chosen || chosenFeatured)
-          : mobileStyles(chosen || chosenFeatured)
+          ? tabletStyles(chosenAdded||chosen || chosenFeatured)
+          : mobileStyles(chosenAdded||chosen || chosenFeatured)
       }
     >
       <div
         className="dark:bg-brown-50"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "110%",
-          content: "''",
-          zIndex: "5",
-          backgroundColor: "rgba(0, 0, 0, 0.7)",
-        }}
+        style={dinamicStyles}
       />
-      <GiBackwardTime
+      <AiOutlineArrowLeft
         onClick={reset}
-        className="w-14 h-24 text-white mx-auto hover:cursor-pointer z-50 "
+        className="w-14 pl-4 h-24 text-white hover:cursor-pointer z-50 "
       />
       <h1 className="z-50 text-aqua-50 pt-8">
-        {chosen?.title||chosen?.original_name || chosenFeatured?.title}
+        {chosenAdded?.name||chosen?.title || chosen?.original_name || chosenFeatured?.title}
       </h1>
       <p className="text-white  text-lg z-50 text-left custom-description px-4 md:px-24">
-        {chosen?.overview || chosenFeatured?.overview}
+        {(!chosenAdded)&&(chosen?.overview || chosenFeatured?.overview)}
       </p>
 
       {loading ? (
-        <div className="flex h-96 justify-center dark:bg-brown-50">
-          <Loading />
+        <div className="flex h-screen justify-center dark:bg-brown-50">
+          <Loading dinamic={true}/>
         </div>
       ) : video ? (
         <div className="flex justify-center dark:bg-transparent">
           <iframe
-
             className="z-50 w-96 h-60 md:h-screen md:pb-48 md:w-screen md:px-10  md:overflow-visible dark:bg-brown-50 animate__animated animate__backInUp"
             width="560"
             src={`https://www.youtube-nocookie.com/embed/${video.key}?autoplay=${autoPlay}`}
@@ -110,8 +73,8 @@ const DinamicPage = () => {
           ></iframe>
         </div>
       ) : (
-        <div className="h-96 md:items-center z-50 text-2xl flex justify-center text-white">
-          Video de youtube no disponible :(
+        <div className="md:items-center text-center z-50 text-2xl flex justify-center px-auto rounded-sm  custom-text items-center text-white h-40">
+          Video de youtube no disponible
         </div>
       )}
     </div>

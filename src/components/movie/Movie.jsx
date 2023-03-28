@@ -3,29 +3,44 @@ import groupPlay from "../../assets/group-play.png";
 import "../../home/home.css";
 import star from "../../assets/star.png";
 import { Link } from "react-router-dom";
-const Movie = ({ title, poster, vote, date, id,video }) => {
+const Movie = ({ title, poster, vote, date, id, video, backdrop_path }) => {
   const [reveal, setReveal] = useState(false);
 
-  return  (
+  return (
     <Link to={`/dinamic-page/${id}`}>
       <div
         className="flex flex-col items-center relative hover:cursor-pointer"
         onMouseOut={() => setReveal(!reveal)}
       >
-        {vote&&<img
-          className="absolute left-8 bottom-4 z-50 w-5 h-5 mb-2 md:left-6"
-          src={star}
-        />}
+        {vote && (
+          <img
+            className="absolute left-8 bottom-4 z-50 w-5 h-5 mb-2 md:left-6"
+            src={star}
+          />
+        )}
         <p className="absolute text-white z-50 left-16 bottom-4 mb-1 md:left-14">
           {vote}
         </p>{" "}
-        <div className="absolute w-80 h-48 md:w-48  md:h-32 bg-gradient-to-b from-gray-900 to-gray-900 hover:opacity-0 opacity-60 rounded-md"></div>{" "}
-        <p className={`absolute text-white bottom-20 text-sm custom-text custom-movie md:top-10 ${vote?"md:left-3":"right-30"}`}>
-          {title}
-        </p>
+        <div
+          className={` ${
+            backdrop_path
+              ? "absolute w-80 h-48 md:w-48  md:h-32 bg-gradient-to-b from-gray-900 to-gray-900 hover:opacity-0 opacity-60 rounded-md"
+              : ""
+          }`}
+        ></div>{" "}
+        {backdrop_path && (
+          <p
+            className={`absolute text-white bottom-20 text-sm custom-text custom-movie md:top-10 ${
+              vote ? "md:left-3" : "right-30"
+            }`}
+          >
+            {title}
+          </p>
+        )}
         <img
-          className="w-80 h-48  rounded-md md:w-48 md:h-32
-    "
+          className={` ${
+            backdrop_path ? "h-48 w-80 rounded-md md:w-48 md:h-32" : "h-96"
+          }  `}
           src={poster}
           alt=""
         />

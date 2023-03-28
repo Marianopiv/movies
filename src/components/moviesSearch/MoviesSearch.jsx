@@ -1,110 +1,120 @@
 import React, { useContext, useState } from "react";
-import { GiBackwardTime } from "react-icons/gi";
+import { AiOutlineArrowLeft } from "react-icons/Ai";
+import { HiOutlineSearch } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { MoviesContext } from "../../context/MoviesProvider";
 import { getImg, slicePages } from "../../helper";
 import useLoad from "../../hook/useLoad";
+import usePagination from "../../hook/usePagination";
+import Button from "../../UI/Button";
 import Movie from "../movie/Movie";
+import Paginacion from "../paginacion/Paginacion";
+import SearchMenu from "../searchMenu/SearchMenu";
+import "animate.css";
 
 const MoviesSearch = () => {
-  const {
-    list,
-    fetchData,
-    fetchSearch,
-    handleInput,
-    searched,
-    setSearched,
-  } = useContext(MoviesContext);
+  const { list, fetchData, fetchSearch, handleInput, searched, setSearched } =
+    useContext(MoviesContext);
   const { toogleSearch, setToogleSearch } = useLoad();
-  const [page, setPage] = useState(1);
-  const pagination = [0,1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const handlePageChange = (pageNumber) => {
-    fetchData(pageNumber);
-  };
+  const { handlePageChange, page, setPage, pagination, setTotalPages } =
+    usePagination();
   const handleSearch = () => {
     fetchSearch(searched);
     setToogleSearch(true);
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  function limpiarCampo() {
+    document.getElementById("buscador").value = "";
+  }
 
   const reset = () => {
-    fetchData()
+    fetchData();
     setSearched(null);
     navigate(-1);
   };
 
   const clear = () => {
     fetchData();
+    limpiarCampo()
     setSearched(null);
   };
 
   return (
-    <div className="">
-      <GiBackwardTime
-        onClick={reset}
-        className="w-14 h-24 text-white mx-auto hover:cursor-pointer z-50 "
-      />
-      <h3 className="text-white py-10 text2xl">Busca tu pelicula</h3>
+    <div className="animate__animated animate__fadeIn ">
+      <div className="flex justify-between px-10 pt-10">
+        <AiOutlineArrowLeft
+          onClick={reset}
+          className="w-14 h-8 text-aqua-50 hover:cursor-pointer z-50 "
+        />
+        <HiOutlineSearch
+          onClick={() => setToogleSearch(!toogleSearch)}
+          className="w-14 h-8 text-aqua-50 hover:cursor-pointer z-50 md:hidden "
+        />
+      </div>
+
       <div className="flex flex-col justify-center gap-4 md:flex-row items-center flex-wrap pb-8">
-        <input onChange={handleInput} type="text" />
-        <button onClick={handleSearch}>Search</button>
-        <button onClick={clear}>Resetea Buscador</button>
+        <div className="flex md:hidden">
+          {toogleSearch && (
+            <SearchMenu
+            searched={searched}
+              toogleSearch={toogleSearch}
+              handleInput={handleInput}
+              handleSearch={handleSearch}
+              clear={clear}
+            />
+          )}
+        </div>
+        <div className="hidden md:flex">
+          <SearchMenu
+          searched={searched}
+            handleInput={handleInput}
+            handleSearch={handleSearch}
+            clear={clear}
+          />
+        </div>
       </div>
       <div className="flex flex-wrap gap-8 justify-center">
-        {list.length>0?list.filter((item) => item.backdrop_path)
-          .map(
-            ({
-              id,
-              title,
-              backdrop_path,
-              vote_average,
-              release_date,
-              video,
-              original_name,
-            }) => (
-              <Movie
-                id={id}
-                key={id}
-                title={title || original_name}
-                poster={getImg(backdrop_path)}
-                vote={vote_average}
-                date={release_date}
-                video={video}
-              />
+        {list.length > 0 ? (
+          list
+            .filter((item) => item.backdrop_path)
+            .map(
+              ({
+                id,
+                title,
+                vote_average,
+                release_date,
+                video,
+                original_name,
+                poster_path,
+              }) => (
+                <Movie
+                  id={id}
+                  key={id}
+                  title={title || original_name}
+                  poster={getImg(poster_path)}
+                  vote={vote_average}
+                  date={release_date}
+                  video={video}
+                />
+              )
             )
-          ): <h3 className="text-white">No se encontraron resultados</h3>}
+        ) ||<h1>Loading</h1>: (
+          <h3 className="text-center px-auto rounded-sm w-64 h-14 text-lg custom-text flex items-center justify-center text-white">
+            No se encontraron resultados
+          </h3>
+        )}
       </div>
       <div className="flex justify-center gap-2 flex-wrap mx-2 pt-4">
         {!searched && (
-          <>
-            <button
-              className={`border-2 rounded-md p-1 ${
-                page === 1 ? "bg-gray-500" : ""
-              }`}
-              onClick={() => setPage(page - 4)}
-              disabled={page === 1}
-            >
-              Back
-            </button>
-            {slicePages(pagination, page, page + 4).map((item) => (
-              <button
-                className="border-2 rounded-md p-1"
-                onClick={() => handlePageChange(item)}
-              >
-                {item}
-              </button>
-            ))}
-            <button
-              disabled={page === 5}
-              className={`border-2 rounded-md p-1 ${
-                page === 5 ? "bg-gray-500" : ""
-              }`}
-              onClick={() => setPage(page + 4)}
-            >
-              next
-            </button>
-          </>
+          <Paginacion
+            handlePageChange={handlePageChange}
+            page={page}
+            setPage={setPage}
+            pagination={pagination}
+            setTotalPages={setTotalPages}
+          />
         )}
       </div>
     </div>

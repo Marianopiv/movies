@@ -68,6 +68,7 @@ const MoviesList = () => {
                       vote={vote_average}
                       date={release_date}
                       video={video}
+                      backdrop_path={backdrop_path}
                     />
                   )
                 )}
@@ -76,7 +77,7 @@ const MoviesList = () => {
         ) : added && added.length > 0 ? (
           <div className="flex justify-center flex-col gap-6 w-screen md:w-auto md:h-auto lg:pl-10 md:justify-start">
             {added.slice(0, 4).map(({ file, name, id }, index) => (
-              <Movie id={id} key={id} title={name} poster={file} />
+              <Movie id={id} key={id} title={name} poster={file} backdrop_path={file} />
             ))}
           </div>
         ) : (
