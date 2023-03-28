@@ -4,7 +4,7 @@ import { MoviesContext } from "../../context/MoviesProvider";
 import Loading from "../../UI/Loading";
 import "animate.css";
 import useDinamic from "../../hook/useDinamic";
-import { HiOutlineArrowSmLeft } from "react-icons/Hi";
+import { HiOutlineArrowSmLeft } from "react-icons/hi";
 
 const dinamicStyles = {
   position: "absolute",
