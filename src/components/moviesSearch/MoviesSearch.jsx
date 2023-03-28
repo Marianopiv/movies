@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { AiOutlineArrowLeft } from "react-icons/Ai";
+import { HiOutlineArrowSmLeft } from "react-icons/Hi";
 import { HiOutlineSearch } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { MoviesContext } from "../../context/MoviesProvider";
@@ -44,7 +44,7 @@ const MoviesSearch = () => {
   return (
     <div className="animate__animated animate__fadeIn ">
       <div className="flex justify-between px-10 pt-10">
-        <AiOutlineArrowLeft
+        <HiOutlineArrowSmLeft
           onClick={reset}
           className="w-14 h-8 text-aqua-50 hover:cursor-pointer z-50 "
         />

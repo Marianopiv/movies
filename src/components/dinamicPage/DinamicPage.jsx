@@ -4,7 +4,7 @@ import { MoviesContext } from "../../context/MoviesProvider";
 import Loading from "../../UI/Loading";
 import "animate.css";
 import useDinamic from "../../hook/useDinamic";
-import { AiOutlineArrowLeft } from "react-icons/Ai";
+import { HiOutlineArrowSmLeft } from "react-icons/Hi";
 
 const dinamicStyles = {
   position: "absolute",
@@ -45,7 +45,7 @@ const DinamicPage = () => {
         className="dark:bg-brown-50"
         style={dinamicStyles}
       />
-      <AiOutlineArrowLeft
+      <HiOutlineArrowSmLeft
         onClick={reset}
         className="w-14 pl-4 h-24 text-white hover:cursor-pointer z-50 "
       />
