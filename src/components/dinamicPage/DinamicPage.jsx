@@ -1,7 +1,6 @@
 import React, { useContext} from "react";
 import { LayoutContext } from "../../context/LayoutProvider";
 import { MoviesContext } from "../../context/MoviesProvider";
-import { GiBackwardTime } from "react-icons/gi";
 import Loading from "../../UI/Loading";
 import "animate.css";
 import useDinamic from "../../hook/useDinamic";
@@ -64,7 +63,7 @@ const DinamicPage = () => {
       ) : video ? (
         <div className="flex justify-center dark:bg-transparent">
           <iframe
-            className="z-50 w-96 h-60 md:h-screen md:pb-48 md:w-screen md:px-10  md:overflow-visible dark:bg-brown-50 animate__animated animate__backInUp"
+            className="z-50 w-96 h-60 md:h-screen md:pb-48 md:w-screen md:px-10   dark:bg-brown-50 animate__animated animate__backInUp"
             width="560"
             src={`https://www.youtube-nocookie.com/embed/${video.key}?autoplay=${autoPlay}`}
             title={video}
