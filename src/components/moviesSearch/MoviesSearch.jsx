@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { HiOutlineArrowSmLeft } from "react-icons/Hi";
+import { HiOutlineArrowSmLeft } from "react-icons/hi";
 import { HiOutlineSearch } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { MoviesContext } from "../../context/MoviesProvider";
