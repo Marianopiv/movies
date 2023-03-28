@@ -35,7 +35,6 @@ const MoviesProvider = ({ children }) => {
         1 + Math.floor(Math.random() * 8)
       }&language=${LANGUAGE}`
     );
-    console.log(resultado);
     if (resultado) {
       const destacadoFinal = chooseMovie(resultado.results);
       setFeatured(destacadoFinal);
@@ -53,14 +52,12 @@ const MoviesProvider = ({ children }) => {
   const fetchSearch = async (searched) => {
     const { value } = searched;
     const result = await axios.get(API_SEARCH + value);
-    console.log(result.data.results);
     setList(result.data.results)
   };
 
   const handleInput = (e) => {
     const { value } = e.target;
     setSearched({ ...searched, value });
-    console.log(searched);
   };
 
   

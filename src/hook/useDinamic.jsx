@@ -25,7 +25,6 @@ const useDinamic = (list, added, featured) => {
     if (list) {
       try {
         const result = await axios.get(API_VIDEO(id));
-        console.log(result.data.results.find((item) => item));
         setVideo(result.data.results.find((item) => item));
         setLoading(false);
       } catch (error) {
@@ -39,15 +38,12 @@ const useDinamic = (list, added, featured) => {
 
   useEffect(() => {
     if (added.length > 0) {
-      console.log(added);
       const resultado = added.find((item) => item.id === id);
       setChosenAdded(resultado);
     }
     if (list) {
-      console.log(list)
       fetchVideo();
       setChosen(list.find((item) => Number(item.id) === Number(id)));
-      console.log(chosen + "esto es chosen")
     }
     if (featured) {
       fetchVideo();
