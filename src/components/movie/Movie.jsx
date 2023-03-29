@@ -3,6 +3,7 @@ import groupPlay from "../../assets/group-play.png";
 import "../../home/home.css";
 import star from "../../assets/star.png";
 import { Link } from "react-router-dom";
+import Loading from "../../UI/Loading";
 const Movie = ({ title, poster, vote, date, id, video, backdrop_path }) => {
   const [reveal, setReveal] = useState(false);
 
@@ -39,7 +40,7 @@ const Movie = ({ title, poster, vote, date, id, video, backdrop_path }) => {
         )}
         <img
           className={` ${
-            backdrop_path ? "h-48 w-80 rounded-md md:w-48 md:h-32" : "h-96"
+            backdrop_path ? "h-48 w-80 rounded-md md:w-48 md:h-32" : "h-96 rounded-md"
           }  `}
           src={poster}
           alt=""

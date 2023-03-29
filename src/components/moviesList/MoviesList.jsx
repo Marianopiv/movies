@@ -98,7 +98,7 @@ const MoviesList = () => {
           </div>
         )}
         {toogle === "option1" && (
-          <div className="flex justify-center gap-2 flex-wrap mx-2 pt-4">
+          <div className="flex justify-center gap-2 flex-wrap mx-2 pt-4 lg:pl-10">
             <button
               className={`border-2 rounded-md p-1 ${
                 page === 1 ? "bg-gray-500" : ""

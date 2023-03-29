@@ -17,12 +17,12 @@ const SearchMenu = ({handleInput,handleSearch,clear,toogleSearch,searched}) => {
           disabled={!searched||searched===""||searched===undefined}
           action={handleSearch}
           text={"Buscar"}
-          customClass={"border text-cream-50"}
+          customClass={"border text-cream-50 hover:text-aqua-50"}
         />
         <Button
           action={clear}
           text={"Resetea buscador"}
-          customClass={"border text-cream-50"}
+          customClass={"border text-cream-50 hover:text-aqua-50"}
         /></div>
   )
 }

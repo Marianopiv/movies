@@ -11,9 +11,10 @@ import Movie from "../movie/Movie";
 import Paginacion from "../paginacion/Paginacion";
 import SearchMenu from "../searchMenu/SearchMenu";
 import "animate.css";
+import Loading from "../../UI/Loading";
 
 const MoviesSearch = () => {
-  const { list, fetchData, fetchSearch, handleInput, searched, setSearched } =
+  const { list, fetchData, fetchSearch, handleInput, searched, setSearched,loading,setLoading } =
     useContext(MoviesContext);
   const { toogleSearch, setToogleSearch } = useLoad();
   const { handlePageChange, page, setPage, pagination, setTotalPages } =
@@ -101,7 +102,7 @@ const MoviesSearch = () => {
               )
             )
         ) ||<h1>Loading</h1>: (
-          <h3 className="text-center px-auto rounded-sm w-64 h-14 text-lg custom-text flex items-center justify-center text-white">
+          <h3 className="text-center px-auto rounded-sm w-screen h-screen text-lg custom-text flex  pt-10 justify-center text-white">
             No se encontraron resultados
           </h3>
         )}
