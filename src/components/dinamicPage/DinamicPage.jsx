@@ -72,7 +72,7 @@ const DinamicPage = () => {
           ></iframe>
         </div>
       ) : (
-        <div className=" bg-gradient-to-b from-transparent to-black z-20 h-fit">
+        <div className=" bg-gradient-to-b from-transparent to-brown-50 z-20 h-fit">
         <div className="text-center z-50 text-2xl flex justify-center px-auto rounded-sm  custom-text text-white h-60 sm:h-96 md:pt-20 md">
           Video de youtube no disponible
         </div></div>
