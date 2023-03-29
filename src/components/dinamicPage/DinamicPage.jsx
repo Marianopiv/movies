@@ -14,7 +14,7 @@ const dinamicStyles = {
   height: "110%",
   content: "''",
   zIndex: "5",
-  backgroundColor: "rgba(0, 0, 0, 0.7)",
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
 }
 
 const DinamicPage = () => {
@@ -32,7 +32,7 @@ const DinamicPage = () => {
 
   return (
     <div
-      className="w-screen flex flex-col gap-16 md:gap-8 relative overflow-scroll animate__animated animate__fadeIn dark:bg-brown-50"
+      className={`w-screen flex flex-col gap-16 md:gap-8 relative overflow-hidden animate__animated animate__fadeIn dark:bg-brown-50 ${chosenAdded? "h-screen sm:h-screen md:h-fit":""}`}
       style={
         width > 768
           ? desktopStyles(chosenAdded||chosen || chosenFeatured)
@@ -72,9 +72,10 @@ const DinamicPage = () => {
           ></iframe>
         </div>
       ) : (
-        <div className="md:items-center text-center z-50 text-2xl flex justify-center px-auto rounded-sm  custom-text items-center text-white h-40">
+        <div className=" bg-gradient-to-b from-transparent to-black z-20 h-fit">
+        <div className="text-center z-50 text-2xl flex justify-center px-auto rounded-sm  custom-text text-white h-60 sm:h-96 md:pt-20 md">
           Video de youtube no disponible
-        </div>
+        </div></div>
       )}
     </div>
   );
