@@ -47,7 +47,6 @@ const MoviesSearch = () => {
     setSearched(null);
   };
 
-  console.log(list)
   return (
     <div className="animate__animated w-screen animate__fadeIn h-screen ">
       <div className="flex justify-between px-10 pt-10">
