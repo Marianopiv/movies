@@ -10,7 +10,7 @@ const Movie = ({ title, poster, vote, date, id, video, backdrop_path }) => {
   return (
     <Link to={`/dinamic-page/${id}`}>
       <div
-        className="flex flex-col items-center relative hover:cursor-pointer"
+        className={`flex flex-col items-center relative hover:cursor-pointer ${backdrop_path?"":"animate__animated animate__fadeIn"}`}
         onMouseOut={() => setReveal(!reveal)}
       >
         {vote && (

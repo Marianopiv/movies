@@ -79,6 +79,7 @@ const MoviesProvider = ({ children }) => {
         added,
         featured,
         loading,
+        setLoading,
         fetchData,
         fetchSearch,
         handleInput,

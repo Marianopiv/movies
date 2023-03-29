@@ -14,13 +14,18 @@ import "animate.css";
 import Loading from "../../UI/Loading";
 
 const MoviesSearch = () => {
-  const { list, fetchData, fetchSearch, handleInput, searched, setSearched,loading,setLoading,toogleSearch,setToogleSearch } =
+  const { list, fetchData, fetchSearch, handleInput, searched,setSearched,toogleSearch,setToogleSearch,toogleLoader,setToogleLoader } =
     useContext(MoviesContext);
   const { handlePageChange, page, setPage, pagination, setTotalPages } =
     usePagination();
   const handleSearch = () => {
+    setToogleLoader(true)
     fetchSearch(searched);
     setToogleSearch(true);
+    setTimeout(function() {
+      setToogleLoader(false)
+    }, 1000);
+    
   };
 
   const navigate = useNavigate();
@@ -43,7 +48,7 @@ const MoviesSearch = () => {
   };
 
   return (
-    <div className="animate__animated animate__fadeIn ">
+    <div className="animate__animated w-screen animate__fadeIn ">
       <div className="flex justify-between px-10 pt-10">
         <HiOutlineArrowSmLeft
           onClick={reset}
@@ -76,8 +81,11 @@ const MoviesSearch = () => {
           />
         </div>
       </div>
-      <div className="flex flex-wrap gap-8 justify-center">
-        {list.length > 0 ? (
+      <div className="flex flex-wrap gap-8 justify-center ">
+      {toogleLoader ? (
+        <div className="flex h-screen pt-20 justify-center dark:bg-brown-50 animate__animated animate__fadeIn">
+          <Loading dinamic={true}/>
+        </div>):list.length > 0 ? (
           list
             .filter((item) => item.backdrop_path)
             .map(

@@ -1,21 +1,36 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import iconNav from "../../assets/iconNav.png";
-import menu from "../../assets/menu.png";
-import bell from "../../assets/bell.png";
 import { MoviesContext } from "../../context/MoviesProvider";
-import { getImg } from "../../helper";
 import "./navbar.css";
-import cross from "../../assets/plus.png";
 import { HiOutlineSearch } from "react-icons/hi";
 import useLoad from "../../hook/useLoad";
 const NavBar = () => {
-  const { setToogleMovie, toogleMovie, featured,toogleSearch, setToogleSearch  } = useContext(MoviesContext);
-  const navigate = useNavigate()
+  const {
+    setToogleMovie,
+    toogleMovie,
+    setToogleSearch,
+    fetchSearch,
+    handleInput,
+    searched,
+    toogleLoader,
+    setToogleLoader,
+  } = useContext(MoviesContext);
+  const navigate = useNavigate();
+
+  const search = () => {
+    setToogleLoader(true);
+    navigate("/movie-search");
+    fetchSearch(searched);
+    setToogleSearch(true);
+    setTimeout(function () {
+      setToogleLoader(false);
+    }, 1000);
+  };
+
   const handleSearch = () => {
-    setToogleSearch(true)
-    navigate("/movie-search")
-  }
+    setToogleSearch(true);
+    navigate("/movie-search");
+  };
   return (
     <div
       className={`flex relative justify-center items-center w-auto md:w-screen gap-16 md:gap-0 md:justify-around  pt-5 ${
@@ -70,19 +85,23 @@ const NavBar = () => {
           </Link>
         </div>
       </div>
-      <div className="hidden md:flex z-50 text-black gap-6 h-3 md:items-center">
-        <img className="w-6 h-3" src={menu} alt="" />
-        <div className="relative">
-          <span className="absolute inline-flex h-2 w-2 rounded-full bg-aqua-50"></span>
-
-          <img className="h-5 " src={bell} alt="" />
-        </div>
-        <img className="rounded-full z-20 h-7" src={iconNav} alt="" />
+      <div className="hidden lg:flex z-50   text-black gap-6 md:items-center">
+        <p className="custom-text text-white  text-sm">Buscar pelicula</p>
+        <input
+          id="buscador"
+          className="text-center rounded-sm w-48 h-12 text-lg custom-text flex items-center justify-center"
+          onChange={handleInput}
+          type="text"
+        />
+        <HiOutlineSearch
+          onClick={search}
+          className="w-14 h-8 text-white hover:cursor-pointer z-50"
+        />
       </div>
       <HiOutlineSearch
-          onClick={handleSearch}
-          className="w-14 h-8 text-white hover:cursor-pointer z-50 md:hidden "
-        />
+        onClick={handleSearch}
+        className="w-14 h-8 text-white hover:cursor-pointer z-50 lg:hidden "
+      />
     </div>
   );
 };
