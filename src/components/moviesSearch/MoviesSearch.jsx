@@ -47,6 +47,7 @@ const MoviesSearch = () => {
     setSearched(null);
   };
 
+  console.log(list)
   return (
     <div className="animate__animated w-screen animate__fadeIn h-screen ">
       <div className="flex justify-between px-10 pt-10">
@@ -81,13 +82,13 @@ const MoviesSearch = () => {
           />
         </div>
       </div>
-      <div className="flex flex-wrap gap-8 justify-center ">
+      <div className="flex flex-wrap gap-8 justify-center z-50 ">
       {toogleLoader ? (
-        <div className="flex h-screen pt-20 justify-center dark:bg-brown-50 animate__animated animate__fadeIn">
+        <div className="flex h-fit pt-20 justify-center dark:bg-brown-50 animate__animated animate__fadeIn">
           <Loading dinamic={true}/>
         </div>):list.length > 0 ? (
           list
-            .filter((item) => item.backdrop_path)
+            .filter((item) => item.poster_path)
             .map(
               ({
                 id,
@@ -109,9 +110,9 @@ const MoviesSearch = () => {
                 />
               )
             )
-        ) ||<h1>Loading</h1>: (
+        ) : (
           <h3 className="text-center px-auto rounded-sm w-screen h-screen text-lg custom-text flex  pt-10 justify-center text-white">
-            No se encontraron resultados
+            No se encontraron resultados para {searched?.value}
           </h3>
         )}
       </div>
