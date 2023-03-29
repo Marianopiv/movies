@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import iconNav from "../../assets/iconNav.png";
 import menu from "../../assets/menu.png";
 import bell from "../../assets/bell.png";
@@ -7,9 +7,15 @@ import { MoviesContext } from "../../context/MoviesProvider";
 import { getImg } from "../../helper";
 import "./navbar.css";
 import cross from "../../assets/plus.png";
+import { HiOutlineSearch } from "react-icons/hi";
+import useLoad from "../../hook/useLoad";
 const NavBar = () => {
-  const { setToogleMovie, toogleMovie, featured } = useContext(MoviesContext);
-
+  const { setToogleMovie, toogleMovie, featured,toogleSearch, setToogleSearch  } = useContext(MoviesContext);
+  const navigate = useNavigate()
+  const handleSearch = () => {
+    setToogleSearch(true)
+    navigate("/movie-search")
+  }
   return (
     <div
       className={`flex relative justify-center items-center w-auto md:w-screen gap-16 md:gap-0 md:justify-around  pt-5 ${
@@ -73,7 +79,10 @@ const NavBar = () => {
         </div>
         <img className="rounded-full z-20 h-7" src={iconNav} alt="" />
       </div>
-      <img className="md:hidden rounded-full z-20" src={iconNav} alt="" />
+      <HiOutlineSearch
+          onClick={handleSearch}
+          className="w-14 h-8 text-white hover:cursor-pointer z-50 md:hidden "
+        />
     </div>
   );
 };

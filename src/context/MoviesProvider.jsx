@@ -10,6 +10,7 @@ const MoviesProvider = ({ children }) => {
   const [list, setList] = useState(null);
   const [toogleMovie, setToogleMovie] = useState(false);
   const [toogleLoader, setToogleLoader] = useState(false);
+  const [toogleSearch, setToogleSearch] = useState(false);
   const [added, setAdded] = useState(
     JSON.parse(localStorage.getItem("favoritos")) || []
   );
@@ -52,15 +53,13 @@ const MoviesProvider = ({ children }) => {
   const fetchSearch = async (searched) => {
     const { value } = searched;
     const result = await axios.get(API_SEARCH + value);
-    setList(result.data.results)
+    setList(result.data.results);
   };
 
   const handleInput = (e) => {
     const { value } = e.target;
     setSearched({ ...searched, value });
   };
-
-  
 
   useEffect(() => {
     fetchData();
@@ -85,7 +84,9 @@ const MoviesProvider = ({ children }) => {
         handleInput,
         searched,
         setSearched,
-        setFeatured
+        setFeatured,
+        toogleSearch,
+        setToogleSearch,
       }}
     >
       {children}

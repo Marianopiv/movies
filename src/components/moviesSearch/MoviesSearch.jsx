@@ -14,9 +14,8 @@ import "animate.css";
 import Loading from "../../UI/Loading";
 
 const MoviesSearch = () => {
-  const { list, fetchData, fetchSearch, handleInput, searched, setSearched,loading,setLoading } =
+  const { list, fetchData, fetchSearch, handleInput, searched, setSearched,loading,setLoading,toogleSearch,setToogleSearch } =
     useContext(MoviesContext);
-  const { toogleSearch, setToogleSearch } = useLoad();
   const { handlePageChange, page, setPage, pagination, setTotalPages } =
     usePagination();
   const handleSearch = () => {
@@ -33,6 +32,7 @@ const MoviesSearch = () => {
   const reset = () => {
     fetchData();
     setSearched(null);
+    setToogleSearch(false)
     navigate(-1);
   };
 
