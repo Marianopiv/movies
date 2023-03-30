@@ -15,11 +15,11 @@ const Movie = ({ title, poster, vote, date, id, video, backdrop_path }) => {
       >
         {vote && (
           <img
-            className="absolute left-8 bottom-4 z-50 w-5 h-5 mb-2 md:left-6"
+            className="absolute left-8 bottom-4 z-50 w-5 h-5 mb-2 md:left-6 pointer-events-none"
             src={star}
           />
         )}
-        <p className="absolute text-white z-50 left-16 bottom-4 mb-1 md:left-14">
+        <p className="absolute text-white z-50 left-16 bottom-4 mb-1 md:left-14 pointer-events-none">
           {vote}
         </p>{" "}
         <div
@@ -31,7 +31,7 @@ const Movie = ({ title, poster, vote, date, id, video, backdrop_path }) => {
         ></div>{" "}
         {backdrop_path && (
           <p
-            className={`absolute text-white bottom-20 text-sm custom-text custom-movie md:top-10 ${
+            className={`absolute pointer-events-none text-white bottom-20 text-sm custom-text custom-movie md:top-10 ${
               vote ? "md:left-3" : "right-30"
             }`}
           >
@@ -45,7 +45,7 @@ const Movie = ({ title, poster, vote, date, id, video, backdrop_path }) => {
           src={poster}
           alt=""
         />
-        <p className="absolute text-white z-50 bottom-4 mb-1 right-8">
+        <p className="absolute text-white z-50 bottom-4 mb-1 right-8 pointer-events-none">
           {date?.slice(0, 4)}
         </p>
       </div>

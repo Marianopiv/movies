@@ -4,9 +4,7 @@ import { HiOutlineSearch } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { MoviesContext } from "../../context/MoviesProvider";
 import { getImg, slicePages } from "../../helper";
-import useLoad from "../../hook/useLoad";
 import usePagination from "../../hook/usePagination";
-import Button from "../../UI/Button";
 import Movie from "../movie/Movie";
 import Paginacion from "../paginacion/Paginacion";
 import SearchMenu from "../searchMenu/SearchMenu";
@@ -14,18 +12,27 @@ import "animate.css";
 import Loading from "../../UI/Loading";
 
 const MoviesSearch = () => {
-  const { list, fetchData, fetchSearch, handleInput, searched,setSearched,toogleSearch,setToogleSearch,toogleLoader,setToogleLoader } =
-    useContext(MoviesContext);
+  const {
+    list,
+    fetchData,
+    fetchSearch,
+    handleInput,
+    searched,
+    setSearched,
+    toogleSearch,
+    setToogleSearch,
+    toogleLoader,
+    setToogleLoader,
+  } = useContext(MoviesContext);
   const { handlePageChange, page, setPage, pagination, setTotalPages } =
     usePagination();
   const handleSearch = () => {
-    setToogleLoader(true)
+    setToogleLoader(true);
     fetchSearch(searched);
     setToogleSearch(true);
-    setTimeout(function() {
-      setToogleLoader(false)
+    setTimeout(function () {
+      setToogleLoader(false);
     }, 1000);
-    
   };
 
   const navigate = useNavigate();
@@ -37,13 +44,13 @@ const MoviesSearch = () => {
   const reset = () => {
     fetchData();
     setSearched(null);
-    setToogleSearch(false)
+    setToogleSearch(false);
     navigate(-1);
   };
 
   const clear = () => {
     fetchData();
-    limpiarCampo()
+    limpiarCampo();
     setSearched(null);
   };
   return (
@@ -63,7 +70,7 @@ const MoviesSearch = () => {
         <div className="flex md:hidden">
           {toogleSearch && (
             <SearchMenu
-            searched={searched}
+              searched={searched}
               toogleSearch={toogleSearch}
               handleInput={handleInput}
               handleSearch={handleSearch}
@@ -73,7 +80,7 @@ const MoviesSearch = () => {
         </div>
         <div className="hidden md:flex">
           <SearchMenu
-          searched={searched}
+            searched={searched}
             handleInput={handleInput}
             handleSearch={handleSearch}
             clear={clear}
@@ -81,10 +88,11 @@ const MoviesSearch = () => {
         </div>
       </div>
       <div className="flex flex-wrap gap-8 justify-center z-50 ">
-      {toogleLoader ? (
-        <div className="flex h-fit pt-20 justify-center dark:bg-brown-50 animate__animated animate__fadeIn">
-          <Loading dinamic={true}/>
-        </div>):list.length > 0 ? (
+        {toogleLoader ? (
+          <div className="flex h-fit pt-20 justify-center dark:bg-brown-50 animate__animated animate__fadeIn">
+            <Loading dinamic={true} />
+          </div>
+        ) : list.length > 0 ? (
           list
             .filter((item) => item.poster_path)
             .map(
