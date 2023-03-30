@@ -55,7 +55,7 @@ const MoviesSearch = () => {
         />
         <HiOutlineSearch
           onClick={() => setToogleSearch(!toogleSearch)}
-          className="w-14 h-8 text-aqua-50 hover:cursor-pointer z-50 md:hidden "
+          className="w-14 h-8 text-aqua-50 hover:cursor-pointer z-50 py-1 md:hidden "
         />
       </div>
 

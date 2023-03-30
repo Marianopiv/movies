@@ -3,29 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { MoviesContext } from "../../context/MoviesProvider";
 import "./navbar.css";
 import { HiOutlineSearch } from "react-icons/hi";
-import useLoad from "../../hook/useLoad";
 const NavBar = () => {
   const {
     setToogleMovie,
     toogleMovie,
     setToogleSearch,
-    fetchSearch,
-    handleInput,
-    searched,
-    toogleLoader,
-    setToogleLoader,
   } = useContext(MoviesContext);
   const navigate = useNavigate();
-
-  const search = () => {
-    setToogleLoader(true);
-    navigate("/movie-search");
-    fetchSearch(searched);
-    setToogleSearch(true);
-    setTimeout(function () {
-      setToogleLoader(false);
-    }, 1000);
-  };
 
   const handleSearch = () => {
     setToogleSearch(true);
@@ -85,22 +69,17 @@ const NavBar = () => {
           </Link>
         </div>
       </div>
-      <div className="hidden lg:flex z-50   text-black gap-6 md:items-center">
+      <div onClick={handleSearch} className="hidden md:flex z-50   text-black gap-6 md:items-center hover:cursor-pointer">
         <p className="custom-text text-white  text-sm">Buscar pelicula</p>
-        <input
-          id="buscador"
-          className="text-center rounded-sm w-48 h-12 text-lg custom-text flex items-center justify-center"
-          onChange={handleInput}
-          type="text"
-        />
+
         <HiOutlineSearch
-          onClick={search}
-          className="w-14 h-8 text-white hover:cursor-pointer z-50"
+          
+          className="w-14 h-8 text-white  z-50"
         />
       </div>
       <HiOutlineSearch
         onClick={handleSearch}
-        className="w-14 h-8 text-white hover:cursor-pointer z-50 lg:hidden "
+        className="w-14 h-8 text-white hover:cursor-pointer z-50 md:hidden "
       />
     </div>
   );
