@@ -20,7 +20,7 @@ const Movie = ({ title, poster, vote, date, id, video, backdrop_path }) => {
           />
         ):""}
         <p className="absolute text-white z-50 left-16 bottom-4 mb-1 md:left-14 pointer-events-none">
-          {vote?vote:""}
+          {vote?vote.toFixed(1):""}
         </p>{" "}
         <div
           className={` ${
