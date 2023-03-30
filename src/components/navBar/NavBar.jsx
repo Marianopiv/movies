@@ -56,14 +56,14 @@ const NavBar = () => {
           }`}
         >
           <Link
-            className="z-50 hover:cursor-pointer md:flex md:items-center"
+            className="z-50 hover:cursor-pointer md:flex md:items-center hover:text-aqua-50 "
             onClick={() => setToogleMovie(!toogleMovie)}
             to={"/new-movie"}
           >
-            <p className=" text-4xl md:text-3xl font-sans text-white z-50 mb-0.5 md:mb-0 md:pt-1 md:pr-2">
+            <p className=" text-4xl md:text-3xl font-sans text-white hover:text-aqua-50  z-50 mb-0.5 md:mb-0 md:pt-1 md:pr-2">
               +
             </p>
-            <p className="hidden md:flex custom-text text-white md:pt-3 text-sm">
+            <p className="hidden md:flex custom-text text-white hover:text-aqua-50  md:pt-3 text-sm">
               Agregar película
             </p>
           </Link>
