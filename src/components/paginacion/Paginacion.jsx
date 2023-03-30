@@ -21,8 +21,9 @@ const Paginacion = ({ handlePageChange, page, setPage, pagination,setTotalPages 
         Back
       </button>
       
-      {slicePages(pagination, page, page + 4).map((item) => (
+      {slicePages(pagination, page, page + 4).map((item,index) => (
         <button
+        key={index}
           className="border-2 rounded-md p-1"
           onClick={() => handlePageChange(item)}
         >

@@ -40,7 +40,7 @@ const Movie = ({ title, poster, vote, date, id, video, backdrop_path }) => {
         )}
         <img
           className={` ${
-            backdrop_path ? "h-48 w-80 rounded-md md:w-48 md:h-32" : "h-96 rounded-md"
+            backdrop_path ? "h-48 w-80 rounded-md md:w-48 md:h-32" : "h-96 rounded-md hover:transition-all"
           }  `}
           src={poster}
           alt=""

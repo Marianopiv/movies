@@ -32,7 +32,7 @@ const DinamicPage = () => {
 
   return (
     <div
-      className={`w-screen flex flex-col gap-16 md:gap-8 relative overflow-hidden animate__animated animate__fadeIn dark:bg-brown-50 ${chosenAdded? "h-screen sm:h-screen md:h-fit":""}`}
+      className={`w-screen flex flex-col gap-16 md:gap-8 relative overflow-hidden animate__animated animate__fadeIn dark:bg-brown-50 ${chosenAdded? "h-fit flex sm:h-screen md:h-fit":""}`}
       style={
         width > 768
           ? desktopStyles(chosenAdded||chosen || chosenFeatured)

@@ -30,7 +30,7 @@ const LayoutProvider = ({ children }) => {
   const mobileStyles = (param) => 
   ({
     backgroundImage: `url(${param?.file||getImg(param?.poster_path)})`,
-    backgroundSize: "contain",
+    backgroundSize: `${param?.file?"cover":"contain"}`,
     backgroundRepeat: "no-repeat",
   });
   const tabletStyles = (param) => ({
