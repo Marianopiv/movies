@@ -13,14 +13,14 @@ const Movie = ({ title, poster, vote, date, id, video, backdrop_path }) => {
         className={`flex flex-col items-center relative hover:cursor-pointer ${backdrop_path?"":"animate__animated animate__fadeIn"}`}
         onMouseOut={() => setReveal(!reveal)}
       >
-        {vote && (
+        {vote ? (
           <img
             className="absolute left-8 bottom-4 z-50 w-5 h-5 mb-2 md:left-6 pointer-events-none"
             src={star}
           />
-        )}
+        ):""}
         <p className="absolute text-white z-50 left-16 bottom-4 mb-1 md:left-14 pointer-events-none">
-          {vote}
+          {vote?vote:""}
         </p>{" "}
         <div
           className={` ${
