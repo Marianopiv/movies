@@ -19,6 +19,7 @@ const MoviesList = () => {
   };
 
   useEffect(() => {
+    console.log(page)
     list && setTotalPages(Math.ceil(list.length / ITEMS_PER_PAGE));
   }, [list, page]);
 
@@ -112,7 +113,7 @@ const MoviesList = () => {
               <button
                 key={index}
                 className="border-2 rounded-md p-1"
-                onClick={() => handlePageChange(item)}
+                onClick={() => handlePageChange(item+2)}
               >
                 {item}
               </button>
