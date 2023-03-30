@@ -61,7 +61,7 @@ const DinamicPage = () => {
           <Loading dinamic={true}/>
         </div>
       ) : video ? (
-        <div className="flex justify-center dark:bg-transparent">
+        <div className="flex justify-center dark:bg-transparent px-10">
           <iframe
             className="z-50 w-96 h-60 md:h-screen md:pb-48 md:w-screen md:px-10   dark:bg-brown-50 animate__animated animate__backInUp"
             width="560"
