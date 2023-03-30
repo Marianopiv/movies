@@ -11,11 +11,11 @@ const Home = () => {
 
   return (
     <div
-      className={`flex w-screen flex-col md:flex-row items-center md:relative md:items-center h-auto md:h-screen`}
+      className={`flex w-screen flex-col md:flex-row items-center h-auto md:h-screen`}
     >
-      <div className="flex flex-col items-center gap-4 z-40 mt-56  md:w-2/3 md:mt-0 md:items-baseline md:pl-12 lg:pt-56 lg:h-auto lg:pl-14 lg:w-2/3">
+      <div className="flex flex-col items-center gap-4 z-40 mt-56  md:w-2/3 md:mt-0 md:items-baseline md:pl-12 xl:pr-96 xl:mr-12 2xl:mr-32 lg:pt-56 lg:h-auto lg:pl-12 lg:w-2/3">
         <h3 className="custom-text text-white pt-2 pb-1">
-          original de miravos
+          original de Pivflix
         </h3>
         <h1 className="custom-title md:text-left">
           {featured && featured.title}

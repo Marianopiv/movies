@@ -17,7 +17,7 @@ const NavBar = () => {
   };
   return (
     <div
-      className={`flex relative justify-center items-center w-auto md:w-screen gap-16 md:gap-0 md:justify-around  pt-5 ${
+      className={`flex relative justify-center items-center w-auto md:w-screen gap-16 md:px-12 md:justify-between  pt-5 ${
         toogleMovie ? "md:hidden" : ""
       }`}
     >
@@ -47,9 +47,9 @@ const NavBar = () => {
           </p>
         </Link>
       </div>
-      <p className="z-50 pl-2 navTitle md:hidden">miravos</p>
+      <p className="z-50 pl-2 navTitle md:hidden">Pivflix</p>
       <div className="hidden md:flex gap-10 items-center">
-        <p className="z-50 relative navTitle">miravos</p>
+        <p className="z-50 relative navTitle">Pivflix</p>
         <div
           className={`hidden md:flex text-white rounded-full border justify-center md:w-fit items-center md:border-0  w-9 h-9 pb-2 z-20 ${
             toogleMovie ? "invisible" : ""

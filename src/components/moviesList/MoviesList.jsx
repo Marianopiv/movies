@@ -25,12 +25,12 @@ const MoviesList = () => {
   return (
     <>
       <div
-        className={`bg-brown-50 md:bg-transparent z-30 py-16 ${
-          toogle === "option1" ? "md:py-0 md:pt-10" : ""
-        }  md:w-1/2 md:flex-col md:pl-6 lg:pl-10 lg:pt-4`}
+        className={`bg-brown-50 md:bg-transparent z-30  ${
+          toogle === "option1" ? "py-8 md:py-0 md:pb-8" : "md:h-5/6 pt-10 md:pt-0"
+        }  md:w-1/2  md:flex-col md:pl-6 lg:pl-10`}
       >
         <div className="custom-background bg-brown-50 absolute h-60 left-0 sm:hidden  w-screen bg-gradient-to-b from-transparent -z-10 to-brown-50 -bottom-60 "></div>
-        <div className="flex justify-center items-center pb-7 md:justify-center md:pl-16">
+        <div className="flex justify-center items-center md:justify-center md:pl-16 pb-10 md:pb-6">
           <h3 className="custom-text opacity-60 text-cream-50 ">Ver:</h3>
           <select
             className="text-cream-50  custom-text bg-brown-50 md:bg-transparent"
@@ -75,12 +75,12 @@ const MoviesList = () => {
             </div>
           )
         ) : added && added.length > 0 ? (
-          <div className="flex justify-center flex-col gap-6 w-screen md:w-auto md:h-auto lg:pl-10 md:justify-start">
+          <div className="flex justify-center flex-col  gap-6 w-screen md:w-auto md:h-auto lg:pl-10 ">
             {added.slice(0, 4).map(({ file, name, id }, index) => (
               <Movie id={id} key={id} title={name} poster={file} backdrop_path={file} />
             ))}
           </div>
-        ) : (
+        ) :added.length===0?(<p className="text-white h-96 text-center px-10 custom-text leading-7 md:text-right">No se encontraron peliculas propias, agregue nuevas para visualizarlas aqui</p>) : (
           <div className="sm:flex z-50 justify-center flex-wrap gap-6 md:flex-col md:items-center lg:pl-10 sm:invisible hidden">
             {list
               .slice(0, 4)
