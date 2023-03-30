@@ -30,19 +30,19 @@ const NavBar = () => {
         </div>
       )}
       <div
-        className={`text-white flex justify-center md:w-fit items-center md:border-0  w-9 h-9 py-auto z-50 md:hidden ${
+        className={`text-white hover:text-aqua-50   flex justify-center md:w-fit items-center md:border-0  w-9 h-9 py-auto z-50 md:hidden ${
           toogleMovie ? "invisible" : ""
         }`}
       >
         <Link
-          className="z-50 hover:cursor-pointer md:flex md:items-center"
+          className="z-50 hover:cursor-pointer md:flex md:items-center hover:text-aqua-50  "
           onClick={() => setToogleMovie(!toogleMovie)}
           to={"/new-movie"}
         >
-          <p className="md:flex my-auto text-4xl md:text-3xl font-sans text-white z-50 mb-3  md:mb-0 md:pt-1 md:pr-2">
+          <p className="md:flex my-auto text-4xl md:text-3xl font-sans text-white z-50 mb-3  md:mb-0 md:pt-1 md:pr-2 hover:text-aqua-50  ">
             +
           </p>
-          <p className="hidden md:flex custom-text text-white md:pt-3 md:pr-40 text-sm">
+          <p className="hidden md:flex custom-text text-white md:pt-3 md:pr-40 text-sm hover:text-aqua-50">
             Agregar película
           </p>
         </Link>
@@ -69,17 +69,17 @@ const NavBar = () => {
           </Link>
         </div>
       </div>
-      <div onClick={handleSearch} className="hidden md:flex z-50   text-black gap-6 md:items-center hover:cursor-pointer">
-        <p className="custom-text text-white  text-sm">Buscar pelicula</p>
+      <div onClick={handleSearch} className="hidden md:flex z-50 hover:text-aqua-50      text-black gap-6 md:items-center hover:cursor-pointer">
+        <p className="custom-text text-white hover:text-aqua-50 pt-1  text-sm">Buscar pelicula</p>
 
         <HiOutlineSearch
           
-          className="w-14 h-8 text-white  z-50"
+          className="w-14 h-8 text-white hover:text-aqua-50 z-50"
         />
       </div>
       <HiOutlineSearch
         onClick={handleSearch}
-        className="w-14 h-8 text-white hover:cursor-pointer z-50 md:hidden "
+        className="w-14 h-8 text-white hover:cursor-pointer z-50 md:hidden hover:text-aqua-50"
       />
     </div>
   );
