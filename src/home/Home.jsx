@@ -7,7 +7,7 @@ import { MoviesContext } from "../context/MoviesProvider";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const { featured, list } = useContext(MoviesContext);
+  const { featured, list,setToogleSearch,toogleSearch } = useContext(MoviesContext);
 
   return (
     <div
@@ -27,7 +27,7 @@ const Home = () => {
           >
             <Button icon={arrow} text={"reproducir"} />
           </Link>
-          <Link className="text-white hover:text-aqua-50" to={`/movie-search`}>
+          <Link onClick={() => setToogleSearch(!toogleSearch)} className="text-white hover:text-aqua-50" to={`/movie-search`}>
           <Button
             customClass={"border-zinc-500 border"}
             text={"Buscar"}
