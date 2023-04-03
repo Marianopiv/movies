@@ -10,7 +10,7 @@ const MoviesList = () => {
   const { toogle, setToogle } = useAdd();
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const pagination = [0,1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const pagination = [0,1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15];
 
   const ITEMS_PER_PAGE = 4;
 
@@ -19,7 +19,6 @@ const MoviesList = () => {
   };
 
   useEffect(() => {
-    console.log(page)
     list && setTotalPages(Math.ceil(list.length / ITEMS_PER_PAGE));
   }, [list, page]);
 
@@ -50,7 +49,7 @@ const MoviesList = () => {
         {toogle === "option1" ? (
           list && (
             <div className="flex z-50 justify-center flex-wrap gap-4 md:flex-col md:items-center lg:pl-10">
-              {list
+              {list.filter((item)=>item.backdrop_path)
                 .slice(ITEMS_PER_PAGE * (page - 1), ITEMS_PER_PAGE * page)
                 .map(
                   ({
