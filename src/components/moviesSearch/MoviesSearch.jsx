@@ -51,7 +51,7 @@ const MoviesSearch = () => {
   const clear = () => {
     fetchData();
     limpiarCampo();
-    setSearched(null);
+    setSearched("");
   };
   return (
     <div className="animate__animated w-screen animate__fadeIn h-screen ">

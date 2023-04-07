@@ -51,14 +51,13 @@ const MoviesProvider = ({ children }) => {
   };
 
   const fetchSearch = async (searched) => {
-    const { value } = searched;
-    const result = await axios.get(API_SEARCH + value);
+    const result = await axios.get(API_SEARCH + searched);
     setList(result.data.results);
   };
 
   const handleInput = (e) => {
     const { value } = e.target;
-    setSearched({ ...searched, value });
+    setSearched(value);
   };
 
   useEffect(() => {

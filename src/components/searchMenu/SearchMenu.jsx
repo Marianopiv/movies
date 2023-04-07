@@ -12,6 +12,7 @@ const SearchMenu = ({handleInput,handleSearch,clear,searched}) => {
           className="text-center rounded-sm w-64 h-14 text-lg custom-text flex items-center justify-center"
           onChange={handleInput}
           type="text"
+          value={searched}
         />
         <Button
           disabled={!searched||searched===""||searched===undefined}
