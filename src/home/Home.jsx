@@ -5,6 +5,7 @@ import arrow from "../assets/Path 2.png";
 import MoviesList from "../components/moviesList/MoviesList";
 import { MoviesContext } from "../context/MoviesProvider";
 import { Link } from "react-router-dom";
+import Loading from "../UI/Loading";
 
 const Home = () => {
   const { featured, list, setToogleSearch, toogleSearch } =
@@ -13,7 +14,8 @@ const Home = () => {
   return (
     <div
       className={`flex w-screen flex-col md:flex-row items-center h-auto md:h-screen`}
-    >
+    > 
+      {featured?<>
       <div className="flex flex-col items-center gap-4 z-40 mt-56  md:w-2/3 md:mt-0 md:items-baseline md:pl-12 xl:pr-96 xl:mr-12 2xl:mr-32 lg:pt-56 lg:h-auto lg:pl-12 lg:w-2/3">
         <h3 className="custom-text text-white pt-2 pb-1">
           original de Pivflix
@@ -37,7 +39,7 @@ const Home = () => {
           </Link>
         </div>
       </div>
-      <MoviesList />
+      <MoviesList /></>:<Loading/>}
     </div>
   );
 };

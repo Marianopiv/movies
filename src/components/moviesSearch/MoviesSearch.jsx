@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { HiOutlineArrowSmLeft } from "react-icons/hi";
 import { HiOutlineSearch } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
@@ -53,6 +53,7 @@ const MoviesSearch = () => {
     limpiarCampo();
     setSearched("");
   };
+  
   return (
     <div className="animate__animated w-screen animate__fadeIn h-screen ">
       <div className="flex justify-between px-10 pt-10">
